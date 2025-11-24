@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 
 export default function Bar() {
@@ -7,12 +7,12 @@ export default function Bar() {
     <div className="w-full flex flex-row items-center justify-between px-10 py-4 border-b border-gray-300 bg-white shadow-sm">
       {/* Logo */}
       <h1 className="font-bold text-2xl text-green-800 tracking-wide">
-        THEDisaster <span className="block -mt-1">RELIEF</span>
+        CUREX 
       </h1>
 
       {/* Navigation Links */}
       <div className="flex items-center gap-10">
-        <NavLink
+        <Link
           to="/dashboard"
           className={({ isActive }) =>
             isActive
@@ -21,9 +21,9 @@ export default function Bar() {
           }
         >
           DASHBOARD
-        </NavLink>
+        </Link>
 
-        <NavLink
+        <Link
           to="/history"
           className={({ isActive }) =>
             isActive
@@ -32,9 +32,9 @@ export default function Bar() {
           }
         >
           HISTORY
-        </NavLink>
+        </Link>
 
-        <NavLink
+        <Link
           to="/contact"
           className={({ isActive }) =>
             isActive
@@ -43,9 +43,9 @@ export default function Bar() {
           }
         >
           CONTACT
-        </NavLink>
+        </Link>
 
-        <NavLink
+        <Link
           to="/aboutus"
           className={({ isActive }) =>
             isActive
@@ -54,7 +54,7 @@ export default function Bar() {
           }
         >
           ABOUT US
-        </NavLink>
+        </Link>
 
         <button className="text-lg text-black font-semibold hover:border-b-4 border-green-700 transition">
           LOGOUT
