@@ -77,7 +77,7 @@ export default function LoginForm() {
           <span>👤</span>
         </div>
         <h2 className="text-2xl font-bold mb-6 text-center text-black-700">
-          HRMS Login
+          CUREX Login
         </h2>
 
         <label className="block text-gray-600 text-sm mb-1">Email</label>
