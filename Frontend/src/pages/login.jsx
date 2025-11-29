@@ -56,7 +56,7 @@ export default function LoginForm() {
       }
     } catch (error) {
       console.log(error);
-      if (error.status(400)) {
+      if (error.response?.status === 400) {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
       }
