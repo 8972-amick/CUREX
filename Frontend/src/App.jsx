@@ -2,18 +2,19 @@ import React from 'react'
 import Bar from './Components/HomePage.jsx';
 import LoginForm from './pages/login.jsx';
 import { Route, Routes } from 'react-router-dom';
+import Home from './pages/home.jsx';
 
 const App = () => {
   return (
     <div>
+        <>
+      <Bar /> 
       <Routes>
-        <Route path="/" element={<LoginForm />} />
-        <Route path="/home" element={<Bar />} />
-        <Route path="/dashboard" element={<Bar />} />
-        <Route path="/history" element={<Bar />} />
-        <Route path="/contact" element={<Bar />} />
-        <Route path="/aboutus" element={<Bar />} />
+        <Route path="/home" element={<Home />} />   
+        <Route path="/login" element={<LoginForm />} />
       </Routes>
+    </>
+
     </div>
   )
 }
