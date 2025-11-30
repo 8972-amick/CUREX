@@ -4,7 +4,7 @@ import { Link} from "react-router-dom";
 
 export default function Bar() {
   return (
-    <div className="w-full flex flex-row items-center justify-between px-10 py-4 border-b border-gray-300 bg-white shadow-sm">
+    <div className="w-full fixed z-50 flex flex-row items-center justify-between px-10 py-4 border-b border-gray-300 bg-white shadow-sm">
       {/* Logo */}
       <h1 className="font-bold text-2xl text-green-800 tracking-wide">
         CUREX 

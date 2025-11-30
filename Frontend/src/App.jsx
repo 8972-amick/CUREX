@@ -1,5 +1,5 @@
 import React from 'react'
-import Bar from './Components/HomePage.jsx';
+import Bar from './Components/Bar.jsx';
 import LoginForm from './pages/login.jsx';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/home.jsx';
@@ -8,9 +8,9 @@ const App = () => {
   return (
     <div>
         <>
-      <Bar /> 
+      {/* <Bar />  */}
       <Routes>
-        <Route path="/home" element={<Home />} />   
+        <Route path="/" element={<Home />} />   
         <Route path="/login" element={<LoginForm />} />
       </Routes>
     </>

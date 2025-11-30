@@ -11,17 +11,6 @@ export default function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
-      alert("Email or password is missing");
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      alert("Invalid email address");
-      return;
-    }
-
     try {
       const response = await axios.post("http://localhost:8000/auth", {
         email,

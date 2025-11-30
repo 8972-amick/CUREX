@@ -1,10 +1,10 @@
 import React from 'react'
-import Bar from '../Components/HomePage'
+import Bar from '../Components/Bar'
 
 const home = () => {
   return (
     <>
-   
+   <Bar />
   {/* HERO SECTION */}
 <div className="relative w-full h-[70vh] overflow-hidden flex bg-gradient-to-r from-green-700 to-green-500">
 
