@@ -24,13 +24,14 @@ export const signUp = async (req, res) => {
      
 
    });
-   console.log("User created successfully");
+   
      return res.status(201).json({
       message: "User created successfully",
       success: true,
     });
     
   } catch (error) {
+      console.error("🔥 Prisma Error:", error);
     res.status(500).json({
       message: "Internal server error",
       success: false,
@@ -42,7 +43,10 @@ export const logIn = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user  = await prisma.user.findUnique({ email });
+    const user  = await prisma.user.findUnique({
+      where: { email },
+    });
+
 
     const errorMsg = "Authentication failed, Email or Password is Invalid";
     if (!user) {
@@ -66,6 +70,7 @@ export const logIn = async (req, res) => {
       name: user.name,
     });
   } catch (error) {
+    console.error("🔥 Prisma Error:", error);
     res.status(500).json({
       message: "Internal server error",
       success: false,
