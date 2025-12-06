@@ -1,11 +1,12 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import prisma from "../db/prisma.js";
 
 
 export const signUp = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    const user = await UserModel.findone({ email });
+    const user = await prisma.user.findone({ email });
     if (user) {
       return res
         .status(400)
@@ -29,7 +30,7 @@ export const signUp = async (req, res) => {
 export const logIn = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await UserModel.findone({ email });
+    const user  = await prisma.user.findone({ email });
     const errorMsg = "Authentication failed, Email or Password is Invalid";
     if (!user) {
       return res.status(403).json({ message: errorMsg, success: false });
