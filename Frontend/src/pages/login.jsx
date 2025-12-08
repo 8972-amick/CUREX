@@ -3,6 +3,9 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
+const backend = "http://localhost:3000";
+
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,43 +15,37 @@ export default function LoginForm() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8000/auth", {
+      const response = await axios.post(`${backend}/api/auth/logIn`, {
         email,
         password,
       });
 
       if (response.status === 200) {
-        const token = response.data.token;
-        const user = response.data.user;
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(user));
-        alert("Local login success");
-        navigate("/home");
+        // handle multiple possible response shapes
+        const token = response.data.token || response.data.jwtToken || response.data?.token;
+        const user = response.data.user || (response.data.email ? { email: response.data.email, name: response.data.name } : null);
+
+        if (token) localStorage.setItem("token", token);
+        if (user) localStorage.setItem("user", JSON.stringify(user));
+
+        alert("Login successful");
+        navigate("/");
+      } else {
+        const msg = response.data?.message || "Login failed";
+        alert(msg);
       }
     } catch (error) {
-      console.error("Login error:", error);
-      alert(error.message || "Something went wrong");
+      console.error("Login error:", error?.response || error);
+      const message = error?.response?.data?.message || error.message || "Something went wrong";
+      alert(message);
     }
   };
 
-  const verifyToken = async () => {
+  const verifyToken = () => {
+    
     const token = localStorage.getItem("token");
-    try {
-      const response = await axios.get("http://localhost:8000", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (response.status === 200) {
-        navigate("/home");
-      }
-    } catch (error) {
-      console.log(error);
-      if (error.response?.status === 400) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-      }
+    if (token) {
+      navigate("/");
     }
   };
 
