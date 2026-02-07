@@ -1,8 +1,7 @@
 import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
 
 const backend = "http://localhost:3000";
 
@@ -11,86 +10,115 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  // Redirect if already logged in
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) navigate("/");
+  }, [navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!email || !password) {
+      toast.warning("Please fill in all fields");
+      return;
+    }
+
     try {
-      const response = await axios.post(`${backend}/api/auth/logIn`, {
+      const res = await axios.post(`${backend}/api/auth/logIn`, {
         email,
         password,
       });
 
-      if (response.status === 200) {
-        // handle multiple possible response shapes
-        const token = response.data.token || response.data.jwtToken || response.data?.token;
-        const user = response.data.user || (response.data.email ? { email: response.data.email, name: response.data.name } : null);
-
-        if (token) localStorage.setItem("token", token);
-        if (user) localStorage.setItem("user", JSON.stringify(user));
-
-        alert("Login successful");
+      if (res.status === 200 && res.data.token) {
+        localStorage.setItem("token", res.data.token);
+        toast.success("Login successful 🎉");
         navigate("/");
-      } else {
-        const msg = response.data?.message || "Login failed";
-        alert(msg);
       }
-    } catch (error) {
-      console.error("Login error:", error?.response || error);
-      const message = error?.response?.data?.message || error.message || "Something went wrong";
-      alert(message);
+    } catch (err) {
+      toast.error(
+        err?.response?.data?.message || "Invalid email or password"
+      );
     }
   };
-
-  const verifyToken = () => {
-    
-    const token = localStorage.getItem("token");
-    if (token) {
-      navigate("/");
-    }
-  };
-
-  useEffect(() => {
-    verifyToken();
-  }, []);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
-      <form
-        className="bg-white p-8 rounded-xl shadow-md w-full max-w-sm"
-        onSubmit={handleSubmit}
-      >
-        <div className="flex justify-center mb-4 text-black-600 text-4xl">
-          <span>👤</span>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-emerald-100 px-4">
+      
+      {/* Card */}
+      <div className="w-full max-w-md bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl p-8 border border-white">
+        
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="mx-auto w-14 h-14 flex items-center justify-center rounded-full bg-emerald-100 text-emerald-600 text-2xl shadow-sm">
+            🩺
+          </div>
+          <h2 className="mt-4 text-3xl font-bold text-gray-800">
+            Welcome back
+          </h2>
+          <p className="text-gray-500 mt-1">
+            Sign in to your CUREX account
+          </p>
         </div>
-        <h2 className="text-2xl font-bold mb-6 text-center text-black-700">
-          CUREX Login
-        </h2>
 
-        <label className="block text-gray-600 text-sm mb-1">Email</label>
-        <input
-          type="email"
-          placeholder="admin@example.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-        />
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-5">
+          
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Email
+            </label>
+            <div className="relative">
+              <span className="absolute inset-y-0 left-3 flex items-center text-gray-400">
+                📧
+              </span>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="admin@example.com"
+                className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-400 outline-none"
+              />
+            </div>
+          </div>
 
-        <label className="block text-gray-600 text-sm mb-1">Password</label>
-        <input
-          type="password"
-          placeholder="••••••••"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full px-3 py-2 mb-6 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-        />
+          {/* Password */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Password
+            </label>
+            <div className="relative">
+              <span className="absolute inset-y-0 left-3 flex items-center text-gray-400">
+                🔒
+              </span>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-400 outline-none"
+              />
+            </div>
+          </div>
 
-        <button
-          type="submit"
-          className="w-full bg-black text-white py-2 rounded-md hover:bg-green-700 hover:text-black transition hover:cursor-pointer text-xl"
-        >
-          Login
-        </button>
-      </form>
+          {/* Button */}
+          <button
+            type="submit"
+            className="w-full py-3 rounded-lg bg-emerald-500 text-white font-semibold text-lg shadow-md hover:bg-emerald-600 transition-all"
+          >
+            Login
+          </button>
+        </form>
+
+        {/* Footer */}
+        <p className="text-center text-sm text-gray-500 mt-6">
+          Don’t have an account?{" "}
+          <span className="text-emerald-600 font-medium cursor-pointer hover:underline">
+            Contact Admin
+          </span>
+        </p>
+      </div>
     </div>
   );
 }
