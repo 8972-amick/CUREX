@@ -3,6 +3,7 @@ import LoginForm from './pages/login.jsx';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/home.jsx';
 import Navbar from './Components/Navbar.jsx';
+import SymptomAnalysis from "./pages/symptomAnalysis.jsx";
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />   
         <Route path="/login" element={<LoginForm />} />
+        <Route path="/symptoms" element={<SymptomAnalysis />} />
       </Routes>
     </>
   );
