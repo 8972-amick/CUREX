@@ -1,4 +1,4 @@
-import prisma from "../lib/prisma.js";
+import prisma from "../db/prisma.js";                            
 
 export const analyzeSymptoms = async (req, res) => {
   try {
@@ -10,10 +10,10 @@ export const analyzeSymptoms = async (req, res) => {
       });
     }
 
-    // Convert input to lowercase
+    // Convert input from userto lowercase
     const symptomList = symptoms.map(s => s.toLowerCase());
 
-    // Find matching symptoms in DB
+    // this finds the matchining symptoms in the database
     const matchedSymptoms = await prisma.symptom.findMany({
       where: {
         name: {

@@ -1,7 +1,7 @@
 import express from "express";
-import {analyzeSymptoms} from "../controllers/symptomController";
+import {analyzeSymptoms} from "../controllers/symptomControllers.js";
 
-const router = express.Router();
-router.post("/analyze", analyzeSymptoms);
+const symptomrouter = express.Router();
+symptomrouter.post("/analyze", analyzeSymptoms);
 
-export default router;
+export default symptomrouter;
