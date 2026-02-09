@@ -42,6 +42,12 @@ const Home = () => {
               >
                 Learn More
               </button>
+              <button
+                onClick={() => navigate("/symptoms")}
+                className="px-6 py-3 bg-white/10 backdrop-blur text-white border border-white/30 font-semibold rounded-md hover:bg-white hover:text-black transition"
+              >
+                Symptom Analysis
+              </button>
             </div>
           </div>
         </div>
