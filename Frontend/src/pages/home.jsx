@@ -95,6 +95,41 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <section className="py-14 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+            AI integrated features
+          </h2>
+        </div>
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
+            <h3 className="text-xl font-semibold text-emerald-600">
+              AI powered symptom checker
+            </h3>
+            <p className="mt-3 text-gray-600">
+              Analyze your symptoms and get possible conditions and advice in seconds.
+            </p>
+          </div>
+
+          <div className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
+            <h3 className="text-xl font-semibold text-emerald-600">
+             Licensce verification and background checks
+            </h3>
+            <p className="mt-3 text-gray-600">
+              AI powered verification for healthcare professionals to ensure trust and safety.
+            </p>
+          </div>
+
+          <div className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
+            <h3 className="text-xl font-semibold text-emerald-600">
+              Fast & Secure
+            </h3>
+            <p className="mt-3 text-gray-600">
+              Secure platform with quick matching and onboarding.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
