@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../Components/footer.jsx";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -107,16 +108,19 @@ const Home = () => {
               AI powered symptom checker
             </h3>
             <p className="mt-3 text-gray-600">
-              Analyze your symptoms and get possible conditions and advice in seconds.
+              Analyze your symptoms and get possible conditions and advice in
+              seconds.
             </p>
+            
           </div>
 
           <div className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
             <h3 className="text-xl font-semibold text-emerald-600">
-             Licensce verification and background checks
+              Licensce verification and background checks
             </h3>
             <p className="mt-3 text-gray-600">
-              AI powered verification for healthcare professionals to ensure trust and safety.
+              AI powered verification for healthcare professionals to ensure
+              trust and safety.
             </p>
           </div>
 
@@ -130,6 +134,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };
