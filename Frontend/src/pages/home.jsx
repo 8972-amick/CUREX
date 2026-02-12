@@ -103,7 +103,7 @@ const Home = () => {
             AI integrated features
           </h2>
         </div>
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mt-12 px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
             <h3 className="text-xl font-semibold text-emerald-600">
               AI powered symptom checker

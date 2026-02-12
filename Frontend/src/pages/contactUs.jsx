@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Footer from "../Components/footer.jsx";
+import Footer from "../Components/footer";
 
-const ContactUs = () => {
+const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,102 +16,138 @@ const ContactUs = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("✅ Your message has been submitted successfully!");
+
     setFormData({ name: "", email: "", message: "" });
   };
 
   return (
-    <>
-      {/* Hero Section */}
-      <div className="bg-[#695057] py-20 text-center text-white">
-        <h1 className="text-5xl font-bold">Get in Touch</h1>
-        <p className="italic mt-4">
+    <div className="h-full w-full">
+      <div className="relative bg-teal-700 w-full h-[400px] mb-110">
+        <h1 className="font-bold text-5xl pl-8 text-white text-center pt-15 ">
+          Get in Touch
+        </h1>
+        <p className="pl-8 text-white text-center italic mb-20">
           Building Connections, One Message at a Time
         </p>
-      </div>
 
-      {/* Main Contact Section */}
-      <div className="max-w-6xl bg-[#837e8f] mx-auto px-6 py-16 grid md:grid-cols-2 gap-10">
-        
-        {/* Left - Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="bg-white p-8 rounded-xl shadow-lg space-y-6"
+        {/* main Box */}
+        <div
+          className="absolute left-1/2 bottom-0 translate-x-[-50%] translate-y-[70%]
+                  bg-white w-[900px] h-[650px] grid grid-cols-2 p-6 shadow-xl rounded-xl mb-10 mt-10" 
         >
-          <h3 className="text-2xl font-bold text-gray-800 text-center">
-            Send Us a Message
-          </h3>
-
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Your Name"
-            className="w-full border p-3 rounded-md focus:ring-2 focus:ring-teal-500 outline-none"
-            required
-          />
-
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Email Address"
-            className="w-full border p-3 rounded-md focus:ring-2 focus:ring-teal-500 outline-none"
-            required
-          />
-
-          <textarea
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            placeholder="Write your message..."
-            rows="4"
-            className="w-full border p-3 rounded-md focus:ring-2 focus:ring-teal-500 outline-none"
-            required
-          />
-
-          <button
-            type="submit"
-            className="w-full bg-[#695057] text-white py-3 rounded-lg shadow hover:bg-teal-800 transition"
+          {/* Left - Form */}
+          <form
+            onSubmit={handleSubmit}
+            className="max-w-lg mx-auto bg-white p-8 mb-30 rounded-xl shadow space-y-6 "
           >
-            Submit
-          </button>
-        </form>
+            {/* Heading */}
+            <h3 className="text-2xl font-bold text-gray-800 text-center">
+              Send Us a Message
+            </h3>
+            <p className="text-gray-600 text-center text-sm italic">
+              We’d love to hear from you! Fill out the form below and we’ll get
+              back to you soon.
+            </p>
 
-        {/* Right - Emergency Contacts */}
-        <div className="space-y-6">
-          <div className="bg-white p-6 rounded-xl shadow-md text-center">
-            <h3 className="text-xl font-bold">Police Emergency</h3>
-            <p className="text-2xl font-semibold text-teal-700">100 / 101</p>
+            {/* Name */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Your Name"
+                className="w-full border p-3 rounded-md focus:ring focus:ring-green-500 outline-none"
+                required
+              />
+            </div>
+
+            {/* Email */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email Address"
+                className="w-full border p-3 rounded-md focus:ring focus:ring-green-500 outline-none"
+                required
+              />
+            </div>
+
+            {/* Message */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Message
+              </label>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Write your message..."
+                rows="4"
+                className="w-full border p-3 rounded-md focus:ring focus:ring-green-500 outline-none"
+                required
+              ></textarea>
+            </div>
+
+            {/* Button */}
+            <div className="text-center">
+              <button
+                type="submit"
+                className="w-full bg-teal-600 text-white px-4 py-3 rounded-lg shadow hover:bg-teal-800 transition"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+
+          {/* Right - Contact Info */}
+          <div className="text-white rounded-xl p-6 space-y-3">
+            
+           <div className="h-100vh w-full  rounded-lg border-2 border-black shadow-xl">
+            <p className="p-3 text-2xl text-center text-black font-bold">police Emergency hotline</p>
+            <p className="text-center pb-3 text-black text-2xl">100/101</p>
+           </div>
+
+          <div className="h-100vh w-full  rounded-lg border-2 border-black shadow-xl">
+            <p className="p-3 text-2xl text-center text-black font-bold">Ambulance</p>
+            <p className="text-center pb-3 text-black text-2xl">9873637221</p>
+           </div>
+
+
+           <div className="h-100vh w-full   rounded-lg border-2 border-black shadow-xl">
+            <p className="p-3 text-2xl text-center text-black font-bold">Fire Brigade</p>
+            <p className="text-center pb-3 text-black text-2xl">9836243541</p>
+           </div>
+           
+
+           <div className="h-100vh w-full  rounded-lg border-2 border-black shadow-xl">
+            <p className="p-3 text-2xl text-center text-black font-bold">Rescue Teams</p>
+            <p className="text-center pb-3 text-black text-2xl">9812876543</p>
+           </div>
+           
+            <div className="text-black">
+              <p>If you have any queries, feel free to contact us via email or phone.</p>
+              <p>Email: Thedisasterrrelief@gmail.com</p>
+              <p>Phone: +977 9813456782</p>
+            </div>
+            
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-md text-center">
-            <h3 className="text-xl font-bold">Ambulance</h3>
-            <p className="text-2xl font-semibold text-teal-700">9873637221</p>
-          </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-md text-center">
-            <h3 className="text-xl font-bold">Fire Brigade</h3>
-            <p className="text-2xl font-semibold text-teal-700">9836243541</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-md text-center">
-            <h3 className="text-xl font-bold">Rescue Teams</h3>
-            <p className="text-2xl font-semibold text-teal-700">9812876543</p>
-          </div>
-
-          <div className="bg-gray-100 p-6 rounded-xl shadow-md text-center">
-            <p>Email: Thedisasterrelief@gmail.com</p>
-            <p>Phone: +977 9813456782</p>
-          </div>
         </div>
-
       </div>
-
-      <Footer />
-    </>
+      
+  <Footer />
+    </div>
   );
 };
 
-export default ContactUs;
+export default Contact;

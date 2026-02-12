@@ -2,11 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { BellDot, Settings } from "lucide-react";
 
-export default function Bar() {
+export default function Navbar() {
   const userEmail = localStorage.getItem("email");
   return (
     <div className="w-full flex flex-row items-center justify-between px-7 py-3  bg-white shadow-sm  top-0 z-50 ">
-     <div className="flex items-center space-x-4 px-8 py-6 w-fit">
+     <div className="flex items-center space-x-4 pt 2 w-fit">
       
       {/* Logo Icon */}
       <div className="relative w-16 h-16">
