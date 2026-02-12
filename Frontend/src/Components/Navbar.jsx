@@ -59,7 +59,7 @@ export default function Bar() {
         </NavLink>
 
         <NavLink
-          to="/aboutus"
+          to="/about"
           className={({ isActive }) =>
             isActive ?
               "font-bold text-gray-600 border-b-3 border-teal-700"
