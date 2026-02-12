@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Components/footer.jsx";
 
+
 const Home = () => {
   const navigate = useNavigate();
 
