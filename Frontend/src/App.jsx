@@ -6,6 +6,8 @@ import Navbar from './Components/Navbar.jsx';
 import SymptomAnalysis from "./pages/symptomAnalysis.jsx";
 import ContactUs from "./pages/contactUs.jsx";
 import AboutUs from "./pages/aboutUs.jsx";
+import BookAppointment from './pages/BookAppointmnet.jsx';
+import MyAppointments from './pages/MyAppointmnets.jsx';
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
         <Route path="/symptoms" element={<SymptomAnalysis />} />
         <Route path="/contact" element={<ContactUs />} /> 
         <Route path="/about" element={<AboutUs />} /> 
+        <Route path="/book" element={<BookAppointment />} />
+        <Route path="/my-appointments" element={<MyAppointments />} />
       </Routes>
     </>
   );

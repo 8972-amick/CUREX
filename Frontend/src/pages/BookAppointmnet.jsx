@@ -14,7 +14,7 @@ export default function BookAppointment() {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "http://localhost:5000/api/appointments/book",
+        "http://localhost:3000/api/appointments/book",
         {
           doctorId,
           appointmentDate: date,
