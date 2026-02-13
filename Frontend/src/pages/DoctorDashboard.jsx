@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+
 
 export default function DoctorDashboard() {
   const [appointments, setAppointments] = useState([]);

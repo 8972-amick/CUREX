@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "../Components/Navbar";
-import Sidebar from "../Components/Sidebar";
+import Navbar from "../Components/Navbar.jsx";
+import Sidebar from "../Components/Sidebar.jsx";
 
 
 export default function MyAppointments() {
