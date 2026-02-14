@@ -12,7 +12,7 @@ const Aboutus = () => {
           <div class="text-center max-w-3xl mx-auto mb-20 px-6 ">
             <h1 class="text-4xl font-bold text-white mb-4">About Us</h1>
             <p class="text-lg text-gray-600 leading-relaxed text-white">
-              <span class="font-semibold text-white"> THEDisasterRelief</span>{" "}
+              <span class="font-semibold text-white"> Curex</span>{" "}
               was created to make borrowing books simple for students and
               community members. It helps track books, borrowing history, and
               supports librarians in managing the catalog efficiently. This
@@ -78,7 +78,7 @@ const Aboutus = () => {
                   src="/src/assets/WhatsApp Image 2026-02-11 at 13.23.06.jpeg"
                   className="w-full h-40 object-cover rounded-t-xl mb-3"
                 />
-                <h1 className="font-bold text-lg">Kabita Giri</h1>
+                <h1 className="font-bold text-lg">Amick Khadka</h1>
                 <p className="text-gray-600 text-sm">Frontend Manager</p>
               </div>
 
@@ -88,7 +88,7 @@ const Aboutus = () => {
                   src="/src/assets/WhatsApp Image 2026-02-11 at 13.27.26.jpeg"
                   className="w-full h-40 object-cover rounded-t-xl mb-3"
                 />
-                <h1 className="font-bold text-lg">Anil Kumar Shah</h1>
+                <h1 className="font-bold text-lg">Anamol Niroula</h1>
                 <p className="text-gray-600 text-sm">Backend Manager</p>
               </div>
 
@@ -98,7 +98,7 @@ const Aboutus = () => {
                   src="/src/assets/WhatsApp Image 2026-02-11 at 13.26.02.jpeg"
                   className="w-full h-40 object-cover rounded-t-xl mb-3"
                 />
-                <h1 className="font-bold text-lg">Bibek Seluwal</h1>
+                <h1 className="font-bold text-lg">Luv Kumar Gajmer</h1>
                 <p className="text-gray-600 text-sm">Database Manager</p>
               </div>
 
@@ -108,7 +108,7 @@ const Aboutus = () => {
                   src="/src/assets/WhatsApp Image 2026-02-11 at 13.28.44.jpeg"
                   className="w-full h-40 object-cover rounded-t-xl mb-3"
                 />
-                <h1 className="font-bold text-lg">Khum Bahadur Shrestha</h1>
+                <h1 className="font-bold text-lg">shusan Rai</h1>
                 <p className="text-gray-600 text-sm">UI/UX Designer</p>
               </div>
             </div>
