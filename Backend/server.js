@@ -3,6 +3,7 @@ import "dotenv/config"
 import cors from "cors"
 import authRouter from "./routes/authRoutes.js"
 import symptomrouter from "./routes/symptomRoutes.js";
+import appointmentRoutes from "./routes/appointmentRoutes.js"
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(cors());
 
 app.use('/api/auth',authRouter);
 app.use("/api/symptoms", symptomrouter);
+app.use("/api/appointments", appointmentRoutes);
 
 
 app.listen(PORT, () => {
