@@ -57,17 +57,20 @@ export const logIn = async (req, res) => {
       return res.status(403).json({ message: errorMsg, success: false });
     }
     const jwtToken = jwt.sign(
-      { id: user._id, email: user.email },
+      { id: user.id, email: user.email },
       process.env.JWT_SECRET,
       { expiresIn: "24h" }
     );
 
     res.status(200).json({
-      message: "Login Success",
-      success: true,
-      jwtToken,
-      email,
-      name: user.name,
+  message: "Login Success",
+  success: true,
+  token: jwtToken,
+  user: {
+    id: user.id,
+    name: user.name,
+    email: user.email
+  }
     });
   } catch (error) {
     console.error("🔥 Prisma Error:", error);
