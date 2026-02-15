@@ -9,6 +9,9 @@ const router = express.Router();
 // Create Appointment (only performed by the patients)
 router.post("/create", authMiddleware, async (req, res) => {
   try {
+    console.log("BODY:", req.body);
+    console.log("USER:", req.user);
+
     const { doctorId, appointmentDate, appointmentTime } = req.body;
 
     const appointment = await prisma.appointment.create({
@@ -22,8 +25,8 @@ router.post("/create", authMiddleware, async (req, res) => {
 
     res.json(appointment);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to create appointment" });
+    console.error("CREATE APPOINTMENT ERROR:", error);
+    res.status(500).json({ error: error.message });
   }
 });
 
