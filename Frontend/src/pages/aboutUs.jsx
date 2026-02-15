@@ -13,17 +13,15 @@ const Aboutus = () => {
             <h1 class="text-4xl font-bold text-white mb-4">About Us</h1>
             <p class="text-lg text-gray-600 leading-relaxed text-white">
               <span class="font-semibold text-white"> Curex</span>{" "}
-              was created to make borrowing books simple for students and
-              community members. It helps track books, borrowing history, and
-              supports librarians in managing the catalog efficiently. This
-              Library Management System is designed to help small libraries,
-              schools, and community centers manage their book catalog and
-              borrowing process. Borrowers can browse and borrow books easily,
-              while librarians can efficiently track records and maintain the
-              catalog. Our mission is to make reading accessible to everyone and
-              provide a seamless experience for both readers and librarians. We
-              aim to promote learning, knowledge sharing, and convenience
-              through technology.
+              is a cutting-edge healthcare platform designed to connect patients
+              with top-tier doctors and streamline the appointment booking process.
+              Our mission is to make healthcare accessible, efficient, and
+              patient-centric. With a user-friendly interface and a vast network of
+              medical professionals, Curex empowers patients to take control of
+              their health and make informed decisions about their care. Whether
+              you're looking for a general practitioner, specialist, or urgent
+              care, Curex has you covered with a seamless booking experience and
+              trusted healthcare providers at your fingertips.
             </p>
           </div>
 
@@ -33,8 +31,8 @@ const Aboutus = () => {
               <h3 class="text-2xl font-semibold mb-2">Our Mission</h3>
               <hr class="w-16 mx-auto border-b-4 border-red-600 mb-4" />
               <p class="text-gray-600 leading-relaxed">
-                To make reading accessible and convenient for everyone while
-                supporting librarians in efficient book management.
+                To make healthcare accessible and convenient for everyone while
+                supporting doctors in efficient patient management.
               </p>
             </div>
 
@@ -43,8 +41,9 @@ const Aboutus = () => {
               <h3 class="text-2xl font-semibold mb-2">Our Vision</h3>
               <hr class="w-16 mx-auto border-b-4 border-yellow-500 mb-4" />
               <p class="text-gray-600 leading-relaxed">
-                To create a community where knowledge is easily shared and
-                libraries are efficiently managed through technology.
+                Revolutionize healthcare by providing a seamless platform that connects patients with trusted doctors, enhancing healthcare outcomes
+                globally.
+
               </p>
             </div>
 
@@ -53,8 +52,8 @@ const Aboutus = () => {
               <h3 class="text-2xl font-semibold mb-2">Our Goals</h3>
               <hr class="w-16 mx-auto border-b-4 border-green-600 mb-4" />
               <p class="text-gray-600 leading-relaxed">
-                Enhance library services, simplify borrowing, track records
-                effectively, and promote reading habits among all members.
+                Enhance healthcare services, simplify appointment booking, track patient records
+                effectively, and foster a community of health-conscious individuals for better health outcomes.
               </p>
             </div>
           </div>
