@@ -8,6 +8,7 @@ import ContactUs from "./pages/contactUs.jsx";
 import AboutUs from "./pages/aboutUs.jsx";
 import BookAppointment from './pages/BookAppointmnet.jsx';
 import MyAppointments from './pages/MyAppointmnets.jsx';
+import DoctorDashboard from './pages/DoctorDashboard.jsx'
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/about" element={<AboutUs />} /> 
         <Route path="/book" element={<BookAppointment />} />
         <Route path="/my-appointments" element={<MyAppointments />} />
+        <Route path="/doctor" element={<DoctorDashboard />} />
       </Routes>
     </>
   );
