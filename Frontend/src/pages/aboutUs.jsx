@@ -2,7 +2,7 @@ import React from "react";
 
 const Aboutus = () => {
   return (
-    <div className="flex h-100 bg-teal-700 mb-125 mt-0 pb-150">
+    <div className="flex h-10 bg-[#4b4446] mb-125 mt-0 pb-150">
       {/* nav bar */}
 
       <div className="flex-1 flex flex-col pt-20">
