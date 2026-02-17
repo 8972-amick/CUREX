@@ -10,6 +10,8 @@ import BookAppointment from './pages/BookAppointmnet.jsx';
 import MyAppointments from './pages/MyAppointmnets.jsx';
 import DoctorDashboard from './pages/DoctorDashboard.jsx'
 import Chat from './pages/chat.jsx';
+import Notification from './pages/Notification.jsx';
+import Dashboard from './pages/Dashboard.jsx';
 
 const App = () => {
   return (
@@ -25,6 +27,8 @@ const App = () => {
         <Route path="/my-appointments" element={<MyAppointments />} />
         <Route path="/doctor" element={<DoctorDashboard />} />
         <Route path="/chat" element={<Chat  />} />
+        <Route path="/notification" element={<Notification />} />
+        <Route path="/dashboard" element={<Dashboard />} />
 
       </Routes>
       
