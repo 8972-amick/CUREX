@@ -8,6 +8,7 @@ const Notification = () => {
           This is where the notification functionality will be implemented.
         </p>
         
+        
     </div>
   )
 }
