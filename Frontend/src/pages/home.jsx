@@ -152,6 +152,23 @@ const Home = () => {
           </button>
         </div>
       </section>
+      <section className="py-14 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800"> 
+            Contact Us
+          </h2>
+          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+            Have questions or want to learn more? Reach out to our team for
+            personalized assistance.
+          </p>
+          <button
+            onClick={() => navigate("/contact")}
+            className="mt-8 px-6 py-3 bg-emerald-500 text-white font-semibold rounded-md hover:bg-emerald-600 transition"
+          >
+            Contact Us
+          </button>
+        </div>
+      </section>
       <Footer />
     </div>
   );
