@@ -1,2 +1,55 @@
-git clone https://github.com/luvgajmer/CUREX.git
-cd CUREX
+import express from "express";
+import { PrismaClient } from "@prisma/client";
+
+const router = express.Router();
+const prisma = new PrismaClient();
+
+
+// CREATE
+router.post("/", async (req, res) => {
+  try {
+    const user = await prisma.user.create({
+      data: req.body,
+    });
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+// READ ALL
+router.get("/", async (req, res) => {
+  const users = await prisma.user.findMany();
+  res.json(users);
+});
+
+
+// READ ONE
+router.get("/:id", async (req, res) => {
+  const user = await prisma.user.findUnique({
+    where: { id: Number(req.params.id) },
+  });
+  res.json(user);
+});
+
+
+// UPDATE
+router.put("/:id", async (req, res) => {
+  const updatedUser = await prisma.user.update({
+    where: { id: Number(req.params.id) },
+    data: req.body,
+  });
+  res.json(updatedUser);
+});
+
+
+// DELETE
+router.delete("/:id", async (req, res) => {
+  await prisma.user.delete({
+    where: { id: Number(req.params.id) },
+  });
+  res.json({ message: "User deleted" });
+});
+
+export default router;
