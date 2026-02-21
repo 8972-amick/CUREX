@@ -8,11 +8,13 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
- enum Role {
+
+enum Role {
   ADMIN
   DOCTOR
   PATIENT
 }
+
 model User {
   id        Int      @id @default(autoincrement())
   name      String
@@ -24,13 +26,13 @@ model User {
   // ✅ Added missing opposite relations for Appointment
   patientAppointments Appointment[] @relation("PatientAppointments")
   doctorAppointments  Appointment[] @relation("DoctorAppointments")
- 
- // ✅ Added role system
-  role         Role      @default(PATIENT)
+
+  // ✅ Added role system
+  role Role @default(PATIENT)
 
   // ✅ Added license verification fields (for doctors)
   licenseNumber String?
-  isVerified    Boolean   @default(false)
+  isVerified    Boolean @default(false)
 }
 
 model Post {
@@ -87,4 +89,3 @@ model Appointment {
 
   @@index([doctorId, appointmentDate])
 }
-
