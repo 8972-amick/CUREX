@@ -34,6 +34,7 @@ const symptomAnalysis = () => {
           Analyze Symptoms
         </button>
       </div>
+      
     </div>
     
   );

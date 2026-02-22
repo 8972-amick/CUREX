@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../Components/Footer.jsx';
 
 const patientDashboard = () => {
   return (
@@ -11,6 +12,7 @@ const patientDashboard = () => {
             <li><a href="/chat">Chat with Doctor</a></li>
             <li><a href="/notification">Notifications</a></li>
         </ul>
+        <Footer />
     </div>
   )
 }

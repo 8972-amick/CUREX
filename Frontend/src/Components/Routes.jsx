@@ -11,6 +11,7 @@ import MyAppointments from "../pages/MyAppointmnets";
 import Chat from "../pages/chat";
 import SymptomAnalysis from "../pages/symptomAnalysis";
 import LicenseVerification from "../pages/LicenseVerification";
+import PatientDashboard from "../pages/patientDashboard.jsx";
 import { Route, Routes } from "react-router-dom";
 
 const AppRoutes = () => {
@@ -29,6 +30,7 @@ const AppRoutes = () => {
         <Route path="/notification" element={<Notification />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/license-verification" element={<LicenseVerification  />} />
+        <Route path ="patient-dashboard" element={<PatientDashboard />} />
       </Routes>
     </div>
   );

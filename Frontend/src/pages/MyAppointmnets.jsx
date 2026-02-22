@@ -84,6 +84,7 @@ export default function MyAppointments() {
                   Status: <span className={app.status === "APPROVED" ? "text-green-600" : app.status === "REJECTED" ? "text-red-600" : "text-yellow-600"}>{app.status}</span>
                 </p>
               </div>
+              
             ))}
           </div>
         </div>
