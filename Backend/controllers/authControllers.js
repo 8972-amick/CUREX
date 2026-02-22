@@ -83,6 +83,12 @@ export const logIn = async (req, res) => {
 
 export const logOut = async (req, res) => {
    try {
+
+      // Invalidate the token on the client side by sending a response
+      res.status(200).json({
+         message: "Logout successful",
+         success: true,
+      });
     
     
       
