@@ -1,37 +1,33 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import prisma from "../db/prisma.js";                            
-
+import prisma from "../db/prisma.js";
 
 export const signUp = async (req, res) => {
   try {
     const { name, email, password } = req.body;
     const user = await prisma.user.findUnique({
-      where:{email} ,
+      where: { email },
     });
     if (user) {
       return res
         .status(400)
         .json({ message: "User already exists", success: false });
     }
-    const hashedPassword = await bcrypt.hash( password, 10);
-   await prisma.user.create({
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await prisma.user.create({
       data: {
         name,
         email,
         password: hashedPassword,
       },
-     
+    });
 
-   });
-   
-     return res.status(201).json({
+    return res.status(201).json({
       message: "User created successfully",
       success: true,
     });
-    
   } catch (error) {
-      console.error("🔥 Prisma Error:", error);
+    console.error("🔥 Prisma Error:", error);
     res.status(500).json({
       message: "Internal server error",
       success: false,
@@ -43,10 +39,9 @@ export const logIn = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user  = await prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: { email },
     });
-
 
     const errorMsg = "Authentication failed, Email or Password is Invalid";
     if (!user) {
@@ -59,18 +54,18 @@ export const logIn = async (req, res) => {
     const jwtToken = jwt.sign(
       { id: user.id, email: user.email },
       process.env.JWT_SECRET,
-      { expiresIn: "24h" }
+      { expiresIn: "24h" },
     );
 
     res.status(200).json({
-  message: "Login Success",
-  success: true,
-  token: jwtToken,
-  user: {
-    id: user.id,
-    name: user.name,
-    email: user.email
-  }
+      message: "Login Success",
+      success: true,
+      token: jwtToken,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      },
     });
   } catch (error) {
     console.error("🔥 Prisma Error:", error);
@@ -82,23 +77,17 @@ export const logIn = async (req, res) => {
 };
 
 export const logOut = async (req, res) => {
-   try {
-
-      // Invalidate the token on the client side by sending a response
-      res.status(200).json({
-         message: "Logout successful",
-         success: true,
-      });
-    
-    
-      
-      
-   } catch (error) {
-      console.error("Logout Error:", error);
-      res.status(500).json({
-         message: "Internal server error",
-         success: false,
-      });
-      
-   }
+  try {
+    // Invalidate the token on the client side by sending a response
+    res.status(200).json({
+      message: "Logout successful",
+      success: true,
+    });
+  } catch (error) {
+    console.error("Logout Error:", error);
+    res.status(500).json({
+      message: "Internal server error",
+      success: false,
+    });
+  }
 };
