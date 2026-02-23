@@ -12,16 +12,16 @@ const Aboutus = () => {
           <div class="text-center max-w-3xl mx-auto mb-20 px-6 ">
             <h1 class="text-4xl font-bold text-white mb-4">About Us</h1>
             <p class="text-lg text-gray-600 leading-relaxed text-white">
-              <span class="font-semibold text-white"> Curex</span>{" "}
-              is a cutting-edge healthcare platform designed to connect patients
-              with top-tier doctors and streamline the appointment booking process.
+              <span class="font-semibold text-white"> Curex</span> is a
+              cutting-edge healthcare platform designed to connect patients with
+              top-tier doctors and streamline the appointment booking process.
               Our mission is to make healthcare accessible, efficient, and
-              patient-centric. With a user-friendly interface and a vast network of
-              medical professionals, Curex empowers patients to take control of
-              their health and make informed decisions about their care. Whether
-              you're looking for a general practitioner, specialist, or urgent
-              care, Curex has you covered with a seamless booking experience and
-              trusted healthcare providers at your fingertips.
+              patient-centric. With a user-friendly interface and a vast network
+              of medical professionals, Curex empowers patients to take control
+              of their health and make informed decisions about their care.
+              Whether you're looking for a general practitioner, specialist, or
+              urgent care, Curex has you covered with a seamless booking
+              experience and trusted healthcare providers at your fingertips.
             </p>
           </div>
 
@@ -41,9 +41,9 @@ const Aboutus = () => {
               <h3 class="text-2xl font-semibold mb-2">Our Vision</h3>
               <hr class="w-16 mx-auto border-b-4 border-yellow-500 mb-4" />
               <p class="text-gray-600 leading-relaxed">
-                Revolutionize healthcare by providing a seamless platform that connects patients with trusted doctors, enhancing healthcare outcomes
-                globally.
-
+                Revolutionize healthcare by providing a seamless platform that
+                connects patients with trusted doctors, enhancing healthcare
+                outcomes globally.
               </p>
             </div>
 
@@ -52,8 +52,9 @@ const Aboutus = () => {
               <h3 class="text-2xl font-semibold mb-2">Our Goals</h3>
               <hr class="w-16 mx-auto border-b-4 border-green-600 mb-4" />
               <p class="text-gray-600 leading-relaxed">
-                Enhance healthcare services, simplify appointment booking, track patient records
-                effectively, and foster a community of health-conscious individuals for better health outcomes.
+                Enhance healthcare services, simplify appointment booking, track
+                patient records effectively, and foster a community of
+                health-conscious individuals for better health outcomes.
               </p>
             </div>
           </div>
