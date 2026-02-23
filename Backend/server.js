@@ -4,6 +4,7 @@ import cors from "cors";
 import authRouter from "./routes/authRoutes.js";
 import symptomrouter from "./routes/symptomRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js";
+import notificationRouter from "./routes/notificationRoutes.js";
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(cors());
 app.use("/api/auth", authRouter);
 app.use("/api/symptoms", symptomrouter);
 app.use("/api/appointments", appointmentRoutes);
+app.use("/api/notifications", notificationRouter);
 
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on http://localhost:${PORT}`);
