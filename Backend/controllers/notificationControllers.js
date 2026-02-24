@@ -123,7 +123,7 @@ export const markAsRead = async (req, res) => {
   }
 };
 
-// Mark all notifications as read for a user
+
 export const markAllAsRead = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -159,7 +159,7 @@ export const deleteNotification = async (req, res) => {
     });
 
     return res.status(200).json({
-      message: "Notification deleted successfully",
+      message: "Notification has been deleted successfully",
       success: true
     });
   } catch (error) {
