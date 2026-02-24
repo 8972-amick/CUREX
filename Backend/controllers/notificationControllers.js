@@ -35,7 +35,7 @@ export const createNotification = async (req, res) => {
   }
 };
 
-// Get all notifications for a user
+
 export const getNotifications = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -55,7 +55,7 @@ export const getNotifications = async (req, res) => {
     });
 
     return res.status(200).json({
-      message: "Notifications retrieved successfully",
+      message: "Notifications  has been retrieved successfully",
       success: true,
       notifications,
       pagination: {
@@ -65,7 +65,7 @@ export const getNotifications = async (req, res) => {
       }
     });
   } catch (error) {
-    console.error("🔥 Error retrieving notifications:", error);
+    console.error("🔥 Error while getting notifications:", error);
     return res.status(500).json({
       message: "Internal server error",
       success: false
