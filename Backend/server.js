@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 
 app.use(express.json());
 
-// enable CORS for frontend requests (adjust origin in production)
+
 app.use(cors());
 
 app.use("/api/auth", authRouter);
