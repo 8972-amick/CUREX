@@ -5,7 +5,7 @@ export const getDoctors = async (req, res) => {
   try {
     const doctors = await prisma.user.findMany({
       where: {
-        role: "Doctor",
+        role: "DOCTOR",
       },
       select: {
         id: true,
@@ -20,6 +20,7 @@ export const getDoctors = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: "Server error" });
   }
+};
 
   //verify the doctor
   export const verifyDoctor = async (req, res) => {
@@ -40,4 +41,4 @@ export const getDoctors = async (req, res) => {
       });
     }
   };
-};
+
