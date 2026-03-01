@@ -5,6 +5,7 @@ import authRouter from "./routes/authRoutes.js";
 import symptomrouter from "./routes/symptomRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js";
 import notificationRouter from "./routes/notificationRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/symptoms", symptomrouter);
 app.use("/api/appointments", appointmentRoutes);
 app.use("/api/notifications", notificationRouter);
+app.use("/api/admin", adminRoutes);
 
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on http://localhost:${PORT}`);
