@@ -13,6 +13,7 @@ import SymptomAnalysis from "../pages/symptomAnalysis";
 import LicenseVerification from "../pages/LicenseVerification";
 import PatientDashboard from "../pages/patientDashboard.jsx";
 import { Route, Routes } from "react-router-dom";
+import AdminDashboard from "../pages/adminDashboard.jsx";
 
 const AppRoutes = () => {
   return (
