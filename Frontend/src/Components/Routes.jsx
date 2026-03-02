@@ -31,6 +31,7 @@ const AppRoutes = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/license-verification" element={<LicenseVerification  />} />
         <Route path ="patient-dashboard" element={<PatientDashboard />} />
+        <Route path="/admin" element={<AdminDashboard />} />  
       </Routes>
     </div>
   );
