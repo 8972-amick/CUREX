@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+
 import axios from "axios";
 import Sidebar from "../Components/Sidebar";
 
@@ -43,7 +43,7 @@ const AdminDashboard = () => {
       <Sidebar />
 
       <div className="flex-1">
-        <Navbar />
+       
 
         <div className="p-6">
           <h1 className="text-3xl font-bold mb-6">
