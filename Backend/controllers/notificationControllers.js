@@ -73,7 +73,7 @@ export const getNotifications = async (req, res) => {
   }
 };
 
-// Get unread notifications count for a user
+// Get unread notifications  for a user
 export const getUnreadCount = async (req, res) => {
   try {
     const { userId } = req.params;
