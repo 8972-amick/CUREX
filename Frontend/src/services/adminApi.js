@@ -7,4 +7,11 @@ export const getDoctors = (token) => {
             Authorization: `Bearer ${token}`,
         }
     });
+
+    export const  verifyDoctor = (id, token) =>{
+    axios.put(`${API}/doctors/${id}/verify`, {}, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    }); 
 }
