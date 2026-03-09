@@ -12,7 +12,7 @@ const symptomAnalysis = () => {
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-white flex items-center justify-center px-4">
       <div className="bg-white shadow-xl rounded-xl p-8 max-w-lg w-full">
         <h2 className="text-2xl font-bold text-emerald-600 mb-4">
-          Symptom Analysis
+          Symptom Analysis // place where patient enters theirs symptoms
         </h2>
 
         <p className="text-gray-600 mb-6">
