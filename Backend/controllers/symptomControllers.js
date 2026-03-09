@@ -24,7 +24,7 @@ export const analyzeSymptoms = async (req, res) => {
 
     if (matchedSymptoms.length === 0) {
       return res.json({
-        possibleConditions: [],
+        possibleConditions: [],// No conditions can be suggested without matching symptoms
         advice: "No matching symptoms found. Please consult a doctor."
       });
     }
@@ -35,7 +35,7 @@ export const analyzeSymptoms = async (req, res) => {
         symptoms: {
           some: {
             symptomId: {
-              in: matchedSymptoms.map(s => s.id)
+              in: matchedSymptoms.map(s => s.id) // Get the IDs of the matched symptoms
             }
           }
         }
