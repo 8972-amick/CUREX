@@ -2,7 +2,7 @@ import prisma from "../db/prisma.js";
 
 export const analyzeSymptoms = async (req, res) => {
   try {
-    const { symptoms } = req.body;
+    const { symptoms } = req.body; // Expecting an array of symptom names from the user
 
     if (!symptoms || symptoms.length === 0) {
       return res.status(400).json({
