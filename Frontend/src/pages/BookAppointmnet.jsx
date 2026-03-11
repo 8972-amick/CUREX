@@ -58,7 +58,7 @@ export default function BookAppointment() {
       <div className="flex bg-background">
         <Sidebar />
 
-        <div className="flex-1 p-10">
+        <div className="flex-1  p-10">
           <div className="bg-white p-8 rounded-xl shadow-md max-w-lg">
             <h2 className="text-2xl font-bold text-primary mb-6">
               Book Appointment
@@ -104,7 +104,7 @@ export default function BookAppointment() {
             <button
               onClick={handleBook}
               disabled={isLoading}
-              className="bg-secondary hover:bg-green-600 disabled:bg-gray-400 text-white px-6 py-3 rounded-lg w-full transition"
+              className="bg-rose-800 hover:bg-rose-900 disabled:bg-gray-400 text-white px-6 py-3 rounded-lg w-full transition"
             >
               {isLoading ? "Booking..." : "Confirm Booking"}
             </button>

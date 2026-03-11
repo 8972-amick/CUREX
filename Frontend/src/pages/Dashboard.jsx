@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Components/Sidebar";
-import Navbar from "../Components/Navbar";
+
 import { CalendarDays, UserCheck, Users, MessageCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -94,9 +94,7 @@ export default function Dashboard() {
       </aside>
 
       <div className="flex-1 flex flex-col">
-        <header>
-          <Navbar />
-        </header>
+        
 
         <main className="p-6">
           <div className="mb-6">
