@@ -36,18 +36,14 @@ export default function LoginForm() {
         navigate("/");
       }
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message || "Invalid email or password"
-      );
+      toast.error(err?.response?.data?.message || "Invalid email or password");
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-emerald-100 px-4">
-      
       {/* Card */}
       <div className="w-full max-w-md bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl p-8 border border-white">
-        
         {/* Header */}
         <div className="text-center mb-8">
           <div className="mx-auto w-14 h-14 flex items-center justify-center rounded-full bg-emerald-100 text-emerald-600 text-2xl shadow-sm">
@@ -56,14 +52,11 @@ export default function LoginForm() {
           <h2 className="mt-4 text-3xl font-bold text-gray-800">
             Welcome back
           </h2>
-          <p className="text-gray-500 mt-1">
-            Sign in to your CUREX account
-          </p>
+          <p className="text-gray-500 mt-1">Sign in to your CUREX account</p>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
-          
           {/* Email */}
           <div>
             <label className="block text-sm font-medium text-gray-600 mb-1">
@@ -114,8 +107,11 @@ export default function LoginForm() {
         {/* Footer */}
         <p className="text-center text-sm text-gray-500 mt-6">
           Don’t have an account?{" "}
-          <span className="text-emerald-600 font-medium cursor-pointer hover:underline">
-            Contact Admin
+          <span
+            onClick={() => navigate("/register")}
+            className="text-emerald-600 font-medium cursor-pointer hover:underline"
+          >
+            Register here
           </span>
         </p>
       </div>

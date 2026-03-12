@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Footer from "../components/footer.jsx";
+import Footer from "../Components/footer.jsx";
 
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 

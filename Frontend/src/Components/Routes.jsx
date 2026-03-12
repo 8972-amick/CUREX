@@ -14,6 +14,7 @@ import LicenseVerification from "../pages/LicenseVerification";
 import PatientDashboard from "../pages/patientDashboard.jsx";
 import { Route, Routes } from "react-router-dom";
 import AdminDashboard from "../pages/adminDashboard.jsx";
+import RegisterForm from "../pages/RegisterForm.jsx";
 
 const AppRoutes = () => {
   return (
@@ -21,6 +22,7 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm />} />
         <Route path="/symptoms" element={<SymptomAnalysis />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/about" element={<Aboutus />} />
