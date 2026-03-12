@@ -1,4 +1,4 @@
-import prisma from "../db/prisma";
+import prisma from "../db/prisma.js";
 
 //get all doctors
 export const getDoctors = async (req, res) => {

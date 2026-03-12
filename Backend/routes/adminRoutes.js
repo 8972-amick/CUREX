@@ -1,6 +1,6 @@
 import express from 'express';
-import { getDoctors, verifyDoctor } from '../controllers/adminControllers';
-import { authMiddleware } from '../middlewares/authMiddleware';
+import { getDoctors, verifyDoctor } from '../controllers/adminControllers.js';
+import { authMiddleware } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 

@@ -4,28 +4,41 @@ import prisma from "../db/prisma.js";
 
 export const signUp = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
-    const user = await prisma.user.findUnique({
+    const { name, email, password, role, licenseNumber } = req.body;
+
+    const existingUser = await prisma.user.findUnique({
       where: { email },
     });
-    if (user) {
-      return res
-        .status(400)
-        .json({ message: "User already exists", success: false });
+
+    if (existingUser) {
+      return res.status(400).json({
+        message: "User already exists",
+        success: false,
+      });
     }
+
     const hashedPassword = await bcrypt.hash(password, 10);
-    await prisma.user.create({
+
+    const newUser = await prisma.user.create({
       data: {
         name,
         email,
         password: hashedPassword,
+        role: role || "PATIENT",
+        licenseNumber: role === "DOCTOR" ? licenseNumber : null,
       },
     });
 
-    return res.status(201).json({
-      message: "User created successfully",
+    res.status(201).json({
+      message: "User registered successfully",
       success: true,
+      user: {
+        id: newUser.id,
+        email: newUser.email,
+        role: newUser.role,
+      },
     });
+
   } catch (error) {
     console.error("🔥 Prisma Error:", error);
     res.status(500).json({
