@@ -11,7 +11,7 @@ export default function Navbar() {
     const token = localStorage.getItem("token");
     if (!token) return; // stop if no token
 
-    fetch("http://localhost:5000/api/auth/me", {
+    fetch("http://localhost:3000/api/auth/me", {
       headers: {
         "Authorization": `Bearer ${token}`,
       },
