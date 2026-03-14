@@ -1,19 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { BellDot, Settings } from "lucide-react";
-import { useState, useEffect } from "react";
 
 export default function Navbar() {
 
-   const [user, setUser] = useState({ name: "", email: "" });
+  const [user, setUser] = useState({ name: "", email: "" });
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (!token) return; // stop if no token
+    if (!token) return;
 
     fetch("http://localhost:3000/api/auth/me", {
       headers: {
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((res) => {
@@ -23,34 +22,37 @@ export default function Navbar() {
       .then((data) => setUser({ name: data.name, email: data.email }))
       .catch((err) => console.error("Error fetching user:", err));
   }, []);
-  const userEmail = user.email;
+
   return (
-    <div className="w-full flex flex-row items-center justify-between px-7 py-3  bg-white shadow-sm  top-0 z-50 ">
-     <div className="flex items-center space-x-4 pt 2 w-fit">
-      
-      {/* Logo Icon */}
-      <div className="relative w-16 h-16">
-        <div className="absolute top-0 left-4 w-6 h-6 bg-rose-800 rounded-xl"></div>
-        <div className="absolute top-5 left-0 w-6 h-6 bg-rose-800 rounded-xl"></div>
-        <div className="absolute top-5 left-8 w-6 h-6 bg-rose-800 rounded-xl"></div>
-        <div className="absolute top-10 left-4 w-6 h-6 bg-rose-800 rounded-xl"></div>
+    <div className="w-full flex items-center justify-between px-7 py-3 bg-white dark:bg-slate-900 shadow-sm sticky top-0 z-50">
+
+      {/* LOGO */}
+      <div className="flex items-center space-x-4">
+
+        {/* Logo Icon */}
+        <div className="relative w-14 h-14">
+          <div className="absolute top-0 left-4 w-5 h-5 bg-emerald-500 rounded-xl"></div>
+          <div className="absolute top-4 left-0 w-5 h-5 bg-emerald-500 rounded-xl"></div>
+          <div className="absolute top-4 left-8 w-5 h-5 bg-emerald-500 rounded-xl"></div>
+          <div className="absolute top-8 left-4 w-5 h-5 bg-emerald-500 rounded-xl"></div>
+        </div>
+
+        {/* Logo Text */}
+        <h1 className="text-3xl font-bold text-emerald-500 tracking-wide">
+          CUREX
+        </h1>
+
       </div>
 
-      {/* Logo Text */}
-      <h1 className="text-4xl font-bold text-rose-800 tracking-wide">
-        CUREX
-      </h1>
+      {/* NAVIGATION */}
+      <div className="flex items-center gap-8">
 
-    </div>
-
-      {/* Navigation Links */}
-      <div className="flex items-center gap-8 pl-1">
         <NavLink
           to="/dashboard"
           className={({ isActive }) =>
-            isActive ?
-              "font-bold text-gray-600 border-b-3 border-teal-700"
-            : "text-gray-600 font-semibold transition hover:text-gray-800 border-teal-700"
+            isActive
+              ? "font-semibold text-emerald-500 border-b-2 border-emerald-500 pb-1"
+              : "text-gray-700 dark:text-gray-200 hover:text-emerald-500 transition"
           }
         >
           Dashboard
@@ -59,9 +61,9 @@ export default function Navbar() {
         <NavLink
           to="/history"
           className={({ isActive }) =>
-            isActive ?
-              "font-bold text-gray-600 border-b-3 border-teal-700"
-            : "text-gray-600 font-semibold transition hover:text-gray-800 border-teal-700"
+            isActive
+              ? "font-semibold text-emerald-500 border-b-2 border-emerald-500 pb-1"
+              : "text-gray-700 dark:text-gray-200 hover:text-emerald-500 transition"
           }
         >
           History
@@ -70,9 +72,9 @@ export default function Navbar() {
         <NavLink
           to="/contact"
           className={({ isActive }) =>
-            isActive ?
-              "font-bold text-gray-600 border-b-3 border-teal-700"
-            : "text-gray-600 font-semibold transition hover:text-gray-800 border-teal-700"
+            isActive
+              ? "font-semibold text-emerald-500 border-b-2 border-emerald-500 pb-1"
+              : "text-gray-700 dark:text-gray-200 hover:text-emerald-500 transition"
           }
         >
           Contact
@@ -81,28 +83,33 @@ export default function Navbar() {
         <NavLink
           to="/about"
           className={({ isActive }) =>
-            isActive ?
-              "font-bold text-gray-600 border-b-3 border-teal-700"
-            : "text-gray-600 font-semibold transition hover:text-gray-800 border-teal-700"
+            isActive
+              ? "font-semibold text-emerald-500 border-b-2 border-emerald-500 pb-1"
+              : "text-gray-700 dark:text-gray-200 hover:text-emerald-500 transition"
           }
         >
-          About Us
+          About
         </NavLink>
+
       </div>
 
-      {/* Icons Section */}
-      <div className="flex items-center gap-4">
-        <BellDot className="w-5 h-5 text-gray-600 hover:text-gray-800 cursor-pointer" />
-        <Settings className="w-5 h-5 text-gray-600 hover:text-gray-800 cursor-pointer" />
+      {/* RIGHT SECTION */}
+      <div className="flex items-center gap-5">
+
+        <BellDot className="w-5 h-5 text-gray-600 dark:text-gray-300 hover:text-emerald-500 cursor-pointer transition" />
+
+        <Settings className="w-5 h-5 text-gray-600 dark:text-gray-300 hover:text-emerald-500 cursor-pointer transition" />
+
+        {/* USER INFO */}
+        {user.name && (
+          <div className="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-md text-sm text-gray-700 dark:text-gray-200">
+            <p className="font-semibold">{user.name}</p>
+            <p className="text-xs">{user.email}</p>
+          </div>
+        )}
+
       </div>
 
-       {/* User Email / Name */}
-      {user.name && user.email && (
-        <span className="py-1 bg-gray-100 rounded-md text-sm font-medium text-gray-700">
-          <p>{user.name}</p>
-          <p>{user.email}</p>
-        </span>
-      )}
     </div>
   );
 }

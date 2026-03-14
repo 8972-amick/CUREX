@@ -1,37 +1,66 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../Components/footer.jsx";
+import Footer from "../Components/footer";
 
-
+const images = [
+  "/public/1curex.jpg",
+  "/public/2cu.jpg",
+  "/public/img1.png",
+  
+];
 
 const Home = () => {
   const navigate = useNavigate();
+  const [current, setCurrent] = useState(0);
+
+  // Auto slide
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white dark:bg-gray-900 min-h-screen">
+
       {/* HERO SECTION */}
-      <section className="relative w-full">
-        <img
-          src="img1.png"
-          alt="CUREX healthcare platform"
-          className="w-full h-[80vh] object-cover"
-        />
+      <section className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden">
+
+        {/* Background Image Slider */}
+        {images.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt="Healthcare"
+            className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
+              index === current ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent">
-          <div className="max-w-7xl mx-auto h-full px-6 flex flex-col justify-center">
-            <h1 className="text-white text-4xl md:text-6xl font-bold leading-tight drop-shadow-lg">
+        <div className="absolute inset-0 bg-black/60"></div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex items-start md:items-center">
+
+          <div className="pt-16 md:pt-0 max-w-xl">
+
+            {/* TEXT START ALIGNED */}
+            <h1 className="text-white text-3xl sm:text-4xl md:text-6xl font-bold leading-tight">
               Your health <br />
-              <span className="text-emerald-300">is our priority</span>
+              <span className="text-emerald-400">is our priority</span>
             </h1>
 
-            <p className="mt-6 max-w-xl text-gray-200 text-lg">
-              CUREX connects healthcare professionals and facilities with
-              trusted, flexible staffing solutions also AI featured solutions.
+            <p className="mt-6 text-gray-200 text-sm sm:text-base md:text-lg">
+              CUREX connects patients, doctors, and healthcare facilities
+              through AI powered healthcare solutions and verified professionals.
             </p>
 
             {/* CTA Buttons */}
-            <div className="mt-8 flex gap-4">
+            <div className="mt-8 flex flex-wrap gap-4">
               <button
                 onClick={() => navigate("/login")}
                 className="px-6 py-3 bg-emerald-500 text-white font-semibold rounded-md hover:bg-emerald-600 transition"
@@ -45,6 +74,7 @@ const Home = () => {
               >
                 Learn More
               </button>
+
               <button
                 onClick={() => navigate("/symptoms")}
                 className="px-6 py-3 bg-white/10 backdrop-blur text-white border border-white/30 font-semibold rounded-md hover:bg-white hover:text-black transition"
@@ -52,124 +82,73 @@ const Home = () => {
                 Symptom Analysis
               </button>
             </div>
+
           </div>
         </div>
+
+        {/* Slider Dots */}
+        <div className="absolute bottom-6 w-full flex justify-center gap-3">
+          {images.map((_, index) => (
+            <div
+              key={index}
+              onClick={() => setCurrent(index)}
+              className={`w-3 h-3 rounded-full cursor-pointer ${
+                index === current ? "bg-emerald-400" : "bg-white/50"
+              }`}
+            />
+          ))}
+        </div>
+
       </section>
 
       {/* FEATURES SECTION */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-16 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">
             Why Choose CUREX?
           </h2>
 
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            Built to simplify healthcare staffing with speed, trust, and
-            flexibility.
+          <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Built to simplify healthcare with trust, speed, and AI-powered solutions.
           </p>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
+
+            <div className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow">
               <h3 className="text-xl font-semibold text-emerald-600">
                 Trusted Professionals
               </h3>
-              <p className="mt-3 text-gray-600">
-                Verified healthcare providers ready to work when you need them.
+              <p className="mt-3 text-gray-600 dark:text-gray-300">
+                Verified healthcare professionals ready to assist anytime.
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
+            <div className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow">
               <h3 className="text-xl font-semibold text-emerald-600">
-                Flexible Staffing
+                AI Symptom Checker
               </h3>
-              <p className="mt-3 text-gray-600">
-                Short-term or long-term staffing tailored to your needs.
+              <p className="mt-3 text-gray-600 dark:text-gray-300">
+                Analyze symptoms instantly and get possible health insights.
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
+            <div className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow">
               <h3 className="text-xl font-semibold text-emerald-600">
-                Fast & Secure
+                Secure Platform
               </h3>
-              <p className="mt-3 text-gray-600">
-                Secure platform with quick matching and onboarding.
+              <p className="mt-3 text-gray-600 dark:text-gray-300">
+                Fast, secure, and reliable healthcare platform.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-      <section className="py-14 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-            AI integrated features
-          </h2>
-        </div>
-        <div className="mt-12 px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold text-emerald-600">
-              AI powered symptom checker
-            </h3>
-            <p className="mt-3 text-gray-600">
-              Analyze your symptoms and get possible conditions and advice in
-              seconds.
-            </p>
-            
+
           </div>
 
-          <div className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold text-emerald-600">
-              Licensce verification and background checks
-            </h3>
-            <p className="mt-3 text-gray-600">
-              AI powered verification for healthcare professionals to ensure
-              trust and safety.
-            </p>
-          </div>
+        </div>
+      </section>
 
-          <div className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold text-emerald-600">
-              Fast & Secure
-            </h3>
-            <p className="mt-3 text-gray-600">
-              Secure platform with quick matching and onboarding.
-            </p>
-          </div>
-        </div>
-      </section>
-      <section className="py-14 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-            Join CUREX Today
-          </h2>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            Experience the future of healthcare staffing and AI-powered solutions.
-          </p>
-          <button
-            onClick={() => navigate("/login")}
-            className="mt-8 px-6 py-3 bg-emerald-500 text-white font-semibold rounded-md hover:bg-emerald-600 transition"
-          >
-            Get Started
-          </button>
-        </div>
-      </section>
-      <section className="py-14 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800"> 
-            Contact Us
-          </h2>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            Have questions or want to learn more? Reach out to our team for
-            personalized assistance.
-          </p>
-          <button
-            onClick={() => navigate("/contact")}
-            className="mt-8 px-6 py-3 bg-emerald-500 text-white font-semibold rounded-md hover:bg-emerald-600 transition"
-          >
-            Contact Us
-          </button>
-        </div>
-      </section>
       <Footer />
+
     </div>
   );
 };

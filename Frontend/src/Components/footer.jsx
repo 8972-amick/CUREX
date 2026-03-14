@@ -3,58 +3,113 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/f
 
 const Footer = () => {
   return (
-    <footer className="bg-[#695057] text-white">
-      <div className="max-w-7xl mx-auto px-8 py-10 grid md:grid-cols-3 gap-8">
-        
-        {/* About */}
+    <footer className="bg-slate-900 text-gray-300">
+
+      <div className="max-w-7xl mx-auto px-8 py-14 grid gap-10 md:grid-cols-3">
+
+        {/* Brand Section */}
         <div>
-          <h3 className="text-xl font-bold mb-3">Curex</h3>
-          <p>
-            CUREX is dedicated to providing efficient healthcare staffing 
-            solutions during disasters, ensuring that medical professionals 
-            are quickly deployed to where they are needed most.
+          <h3 className="text-2xl font-bold text-emerald-400 mb-4">
+            CUREX
+          </h3>
+
+          <p className="text-gray-400 leading-relaxed">
+            CUREX connects patients, healthcare professionals, and facilities
+            through AI-powered solutions and verified medical professionals.
+            Our mission is to improve healthcare accessibility and efficiency.
           </p>
         </div>
 
         {/* Quick Links */}
         <div>
-          <h4 className="text-lg font-semibold mb-3">Quick Links</h4>
-          <ul className="space-y-2">
-            <li className="hover:text-gray-300 cursor-pointer">Home</li>
-            <li className="hover:text-gray-300 cursor-pointer">About Us</li>
-            <li className="hover:text-gray-300 cursor-pointer">Services</li>
+          <h4 className="text-lg font-semibold text-white mb-4">
+            Quick Links
+          </h4>
+
+          <ul className="space-y-3">
+            <li className="hover:text-emerald-400 cursor-pointer transition">
+              Home
+            </li>
+            <li className="hover:text-emerald-400 cursor-pointer transition">
+              About Us
+            </li>
+            <li className="hover:text-emerald-400 cursor-pointer transition">
+              Services
+            </li>
+            <li className="hover:text-emerald-400 cursor-pointer transition">
+              Contact
+            </li>
           </ul>
         </div>
 
-        {/* Contact */}
+        {/* Contact + Social */}
         <div>
-          <h4 className="text-lg font-semibold mb-3">Contact Us</h4>
-          <p>Email: info@curex.org</p>
-          <p>Phone: +123 456 7890</p>
+          <h4 className="text-lg font-semibold text-white mb-4">
+            Contact
+          </h4>
 
-          <h4 className="text-lg font-semibold mb-3 mt-5">Connect With Us</h4>
-          <div className="flex gap-4 text-2xl">
-            <a href="#" className="hover:text-gray-300 transition">
+          <p className="text-gray-400">Email: info@curex.org</p>
+          <p className="text-gray-400">Phone: +123 456 7890</p>
+
+          <h4 className="text-lg font-semibold text-white mt-6 mb-4">
+            Connect With Us
+          </h4>
+
+          <div className="flex gap-4">
+
+            <a
+              href="#"
+              className="p-3 bg-slate-800 rounded-lg hover:bg-emerald-500 hover:text-white transition"
+            >
               <FaFacebookF />
             </a>
-            <a href="#" className="hover:text-gray-300 transition">
+
+            <a
+              href="#"
+              className="p-3 bg-slate-800 rounded-lg hover:bg-emerald-500 hover:text-white transition"
+            >
               <FaTwitter />
             </a>
-            <a href="#" className="hover:text-gray-300 transition">
+
+            <a
+              href="#"
+              className="p-3 bg-slate-800 rounded-lg hover:bg-emerald-500 hover:text-white transition"
+            >
               <FaInstagram />
             </a>
-            <a href="#" className="hover:text-gray-300 transition">
+
+            <a
+              href="#"
+              className="p-3 bg-slate-800 rounded-lg hover:bg-emerald-500 hover:text-white transition"
+            >
               <FaLinkedinIn />
             </a>
+
           </div>
         </div>
 
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-white/20 text-center py-4 text-sm">
-        © 2026 Curex. All rights reserved.
+      {/* Bottom Section */}
+      <div className="border-t border-slate-700">
+
+        <div className="max-w-7xl mx-auto px-8 py-4 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+
+          <p>© 2026 CUREX. All rights reserved.</p>
+
+          <div className="flex gap-6 mt-2 md:mt-0">
+            <span className="hover:text-emerald-400 cursor-pointer transition">
+              Privacy Policy
+            </span>
+            <span className="hover:text-emerald-400 cursor-pointer transition">
+              Terms of Service
+            </span>
+          </div>
+
+        </div>
+
       </div>
+
     </footer>
   );
 };
