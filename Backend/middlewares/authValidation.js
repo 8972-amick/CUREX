@@ -1,10 +1,13 @@
 import joi from "joi";
 
 export const signUpValidation = (req, res, next) => {
+  console.log("Incoming body:", req.body);
   const schema = joi.object({
     name: joi.string().min(3).max(100).required(),
     email: joi.string().email().required(),
     password: joi.string().min(4).max(100).required(),
+    role: joi.string().valid("PATIENT", "DOCTOR").optional(),
+    licenseNumber: joi.string().optional(),
   });
 
   const { error } = schema.validate(req.body);
