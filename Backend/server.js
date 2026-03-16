@@ -7,8 +7,14 @@ import appointmentRoutes from "./routes/appointmentRoutes.js";
 import notificationRouter from "./routes/notificationRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import licenseRoute from "./routes/licenseRoute.js";
+import { initSocket } from "./socket/socket.js";
+import http from "http";
+
 
 const app = express();
+const server = http.createServer(app);
+
+initSocket(server);
 
 const PORT = process.env.PORT || 3000;
 
