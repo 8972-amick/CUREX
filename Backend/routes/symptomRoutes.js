@@ -2,6 +2,6 @@ import express from "express";
 import {analyzeSymptoms} from "../controllers/symptomControllers.js";
 
 const symptomrouter = express.Router();
-symptomrouter.post("/analyze", analyzeSymptoms);// Endpoint to analyze symptoms and return possible conditions
+symptomrouter.post("/analyze", analyzeSymptoms);
 
 export default symptomrouter;
