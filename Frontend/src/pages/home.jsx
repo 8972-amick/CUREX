@@ -5,7 +5,7 @@ import Footer from "../Components/footer";
 const images = [
   "/public/1curex.jpg",
   "/public/2cu.jpg",
-  "/public/img1.png",
+  "/public/image1.jpg",
   
 ];
 
@@ -68,12 +68,6 @@ const Home = () => {
                 Get Started
               </button>
 
-              <button
-                onClick={() => navigate("/about")}
-                className="px-6 py-3 border border-white text-white font-semibold rounded-md hover:bg-white hover:text-black transition"
-              >
-                Learn More
-              </button>
 
               <button
                 onClick={() => navigate("/symptoms")}
