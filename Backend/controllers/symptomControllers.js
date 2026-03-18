@@ -13,8 +13,8 @@ export const analyzeSymptoms = async (req, res) => {
     // Convert input from userto lowercase
     const symptomList = symptoms.map(s => s.toLowerCase());
 
-    // this finds the matchining symptoms in the database
-    const matchedSymptoms = await prisma.symptom.findMany({
+    
+    const matchedSymptoms = await prisma.symptom.findMany({ // Find symptoms in the database that match the user's input
       where: {
         name: {
           in: symptomList
