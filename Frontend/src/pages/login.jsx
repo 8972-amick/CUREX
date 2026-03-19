@@ -32,6 +32,8 @@ export default function LoginForm() {
 
       if (res.status === 200 && res.data.token) {
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userId", res.data.user.id);
+        localStorage.setItem("userName", res.data.user.name);
         toast.success("Login successful 🎉");
         navigate("/");
       }
