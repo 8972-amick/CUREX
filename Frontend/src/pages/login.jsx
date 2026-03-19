@@ -34,6 +34,7 @@ export default function LoginForm() {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("userId", res.data.user.id);
         localStorage.setItem("userName", res.data.user.name);
+        localStorage.setItem("role", res.data.user.role || "PATIENT");
         toast.success("Login successful 🎉");
         navigate("/");
       }

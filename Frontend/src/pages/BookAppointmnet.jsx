@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 // import Navbar from "../Components/Navbar";
 import Sidebar from "../Components/Sidebar";
 
@@ -11,6 +12,14 @@ export default function BookAppointment() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+    if (role !== "PATIENT") {
+      navigate("/");
+    }
+  }, [navigate]);
 
   const handleBook = async () => {
     if (!doctorId || !date || !time) {

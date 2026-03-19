@@ -5,23 +5,42 @@ export default function Sidebar() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const menu = [
-    {
-      name: "Book Appointment",
-      path: "/book",
-      icon: CalendarPlus,
-    },
-    {
-      name: "My Appointments",
-      path: "/my-appointments",
-      icon: ClipboardList,
-    },
-    {
-      name: "Doctor Panel",
-      path: "/doctor",
-      icon: Stethoscope,
-    },
-  ];
+  const role = localStorage.getItem("role") || "PATIENT";
+
+  const menu =
+    role === "DOCTOR"
+      ? [
+          {
+            name: "Doctor Panel",
+            path: "/doctor",
+            icon: Stethoscope,
+          },
+          {
+            name: "My Appointments",
+            path: "/my-appointments",
+            icon: ClipboardList,
+          },
+        ]
+      : role === "ADMIN"
+      ? [
+          {
+            name: "Admin Console",
+            path: "/admin",
+            icon: ClipboardList,
+          },
+        ]
+      : [
+          {
+            name: "Book Appointment",
+            path: "/book",
+            icon: CalendarPlus,
+          },
+          {
+            name: "My Appointments",
+            path: "/my-appointments",
+            icon: ClipboardList,
+          },
+        ];
 
   const handleLogout = () => {
     localStorage.removeItem("token");

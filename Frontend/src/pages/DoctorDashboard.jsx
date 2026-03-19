@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 // import Navbar from "../Components/Navbar";
 import Sidebar from "../Components/Sidebar";
@@ -9,6 +10,14 @@ export default function DoctorDashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [updatingId, setUpdatingId] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+    if (role !== "DOCTOR") {
+      navigate("/");
+    }
+  }, [navigate]);
 
   useEffect(() => {
     fetchAppointments();

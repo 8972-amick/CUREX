@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 // import Navbar from "../Components/Navbar.jsx";
 import Sidebar from "../Components/Sidebar.jsx";
@@ -8,6 +9,14 @@ export default function MyAppointments() {
   const [appointments, setAppointments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+    if (role !== "PATIENT") {
+      navigate("/");
+    }
+  }, [navigate]);
 
   useEffect(() => {
     fetchAppointments();

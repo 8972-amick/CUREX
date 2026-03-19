@@ -7,6 +7,13 @@ import axios from "axios";
 export default function Dashboard() {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+    if (role !== "DOCTOR") {
+      navigate("/");
+    }
+  }, [navigate]);
+
   const [appointments, setAppointments] = useState([]);
   const [stats, setStats] = useState({
     upcoming: 0,

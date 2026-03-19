@@ -15,6 +15,7 @@ import PatientDashboard from "../pages/patientDashboard.jsx";
 import { Route, Routes } from "react-router-dom";
 import AdminDashboard from "../pages/adminDashboard.jsx";
 import RegisterForm from "../pages/RegisterForm.jsx";
+import ProtectedRoute from "./ProtectedRoute.jsx";
 
 const AppRoutes = () => {
   return (
@@ -26,15 +27,57 @@ const AppRoutes = () => {
         <Route path="/symptoms" element={<SymptomAnalysis />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/about" element={<Aboutus />} />
-        <Route path="/book" element={<BookAppointment />} />
-        <Route path="/my-appointments" element={<MyAppointments />} />
-        <Route path="/doctor" element={<DoctorDashboard />} />
+        <Route
+          path="/book"
+          element={
+            <ProtectedRoute roles={["PATIENT"]}>
+              <BookAppointment />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/my-appointments"
+          element={
+            <ProtectedRoute roles={["PATIENT"]}>
+              <MyAppointments />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/doctor"
+          element={
+            <ProtectedRoute roles={["DOCTOR"]}>
+              <DoctorDashboard />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/chat" element={<Chat />} />
         <Route path="/notification" element={<Notification />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/license-verification" element={<LicenseVerification  />} />
-        <Route path ="patient-dashboard" element={<PatientDashboard />} />
-        <Route path="/admin" element={<AdminDashboard />} />  
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute roles={["DOCTOR"]}>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/license-verification" element={<LicenseVerification />} />
+        <Route
+          path="/patient-dashboard"
+          element={
+            <ProtectedRoute roles={["PATIENT"]}>
+              <PatientDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute roles={["ADMIN"]}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   );

@@ -4,11 +4,16 @@ import { BellDot, Settings } from "lucide-react";
 
 export default function Navbar() {
 
-  const [user, setUser] = useState({ name: "", email: "" });
+  const [user, setUser] = useState({ name: "", email: "", role: "PATIENT" });
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
     if (!token) return;
+
+    if (role) {
+      setUser((prev) => ({ ...prev, role }));
+    }
 
     fetch("http://localhost:3000/api/auth/me", {
       headers: {
@@ -19,7 +24,10 @@ export default function Navbar() {
         if (!res.ok) throw new Error("Failed to fetch user");
         return res.json();
       })
-      .then((data) => setUser({ name: data.name, email: data.email }))
+      .then((data) => {
+        setUser({ name: data.name, email: data.email, role: data.role || role || "PATIENT" });
+        localStorage.setItem("role", data.role || role || "PATIENT");
+      })
       .catch((err) => console.error("Error fetching user:", err));
   }, []);
 
@@ -105,6 +113,7 @@ export default function Navbar() {
           <div className="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-md text-sm text-gray-700 dark:text-gray-200">
             <p className="font-semibold">{user.name}</p>
             <p className="text-xs">{user.email}</p>
+            <p className="text-xs">Role: {user.role}</p>
           </div>
         )}
 
