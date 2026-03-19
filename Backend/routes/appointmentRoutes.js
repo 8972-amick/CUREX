@@ -2,6 +2,7 @@ import express from "express";
 import prisma from "../db/prisma.js";
 
 import { authMiddleware } from "../middlewares/authMiddleware.js";
+import { requireRole } from "../middlewares/roleMiddleware.js";
 
 const router = express.Router();
 
@@ -22,8 +23,8 @@ const createNotification = async (userId, title, message, type = "APPOINTMENT_ST
 };
 
 
-// Create Appointment (only performed by the patients)
-router.post("/create", authMiddleware, async (req, res) => {
+// Create Appointment (only performed by patients)
+router.post("/create", authMiddleware, requireRole("PATIENT"), async (req, res) => {
   try {
     console.log("BODY:", req.body);
     console.log("USER:", req.user);
@@ -59,8 +60,8 @@ router.post("/create", authMiddleware, async (req, res) => {
 });
 
 
-// Get all doctors appointments
-router.get("/doctor", authMiddleware, async (req, res) => {
+// Get all doctor appointments (Doctor only)
+router.get("/doctor", authMiddleware, requireRole("DOCTOR"), async (req, res) => {
   try {
     const appointments = await prisma.appointment.findMany({
       where: {
@@ -81,8 +82,8 @@ router.get("/doctor", authMiddleware, async (req, res) => {
 });
 
 
-// Get Patient Appointments
-router.get("/patient", authMiddleware, async (req, res) => {
+// Get Patient Appointments (Patient only)
+router.get("/patient", authMiddleware, requireRole("PATIENT"), async (req, res) => {
   try {
     const appointments = await prisma.appointment.findMany({
       where: {
@@ -100,8 +101,8 @@ router.get("/patient", authMiddleware, async (req, res) => {
 });
 
 
-// Update Status (Doctor)
-router.put("/update/:id", authMiddleware, async (req, res) => {
+// Update Status (Doctor only)
+router.put("/update/:id", authMiddleware, requireRole("DOCTOR"), async (req, res) => {
   try {
     const { status } = req.body;
 
@@ -148,8 +149,8 @@ router.put("/update/:id", authMiddleware, async (req, res) => {
     res.status(500).json({ error: "Update failed" });
   }
 });
-// Send appointment reminders (can be called by a cron job)
-router.post("/send-reminders", async (req, res) => {
+// Send appointment reminders (Admin only; can be called by a cron job)
+router.post("/send-reminders", authMiddleware, requireRole("ADMIN"), async (req, res) => {
   try {
     // Get appointments for the next 24 hours
     const tomorrow = new Date();

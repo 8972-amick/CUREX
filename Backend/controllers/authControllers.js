@@ -65,9 +65,9 @@ export const logIn = async (req, res) => {
       return res.status(403).json({ message: errorMsg, success: false });
     }
     const jwtToken = jwt.sign(
-      { id: user.id, email: user.email },
+      { id: user.id, email: user.email, role: user.role },
       process.env.JWT_SECRET,
-      { expiresIn: "24h" },
+      { expiresIn: "24h" }
     );
 
     res.status(200).json({
@@ -78,6 +78,7 @@ export const logIn = async (req, res) => {
         id: user.id,
         name: user.name,
         email: user.email,
+        role: user.role,
       },
     });
   } catch (error) {
