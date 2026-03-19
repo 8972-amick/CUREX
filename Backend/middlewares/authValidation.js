@@ -7,7 +7,11 @@ export const signUpValidation = (req, res, next) => {
     email: joi.string().email().required(),
     password: joi.string().min(4).max(100).required(),
     role: joi.string().valid("PATIENT", "DOCTOR").optional(),
-    licenseNumber: joi.string().optional(),
+    licenseNumber: joi.string().when("role", {
+      is: "DOCTOR",
+      then: joi.string().min(1).required(),
+      otherwise: joi.string().optional().allow(""),
+    }),
   });
 
   const { error } = schema.validate(req.body);

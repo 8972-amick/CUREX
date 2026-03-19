@@ -17,6 +17,13 @@ export const signUp = async (req, res) => {
       });
     }
 
+    if (role === "DOCTOR" && (!licenseNumber || !licenseNumber.trim())) {
+      return res.status(400).json({
+        message: "License number is required for doctor registration",
+        success: false,
+      });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await prisma.user.create({
@@ -56,13 +63,13 @@ export const logIn = async (req, res) => {
       where: { email },
     });
 
-    const errorMsg = "Authentication failed, Email or Password is Invalid";
+    const errorMsg = "Authentication failed, Email or Password is invalid";
     if (!user) {
-      return res.status(403).json({ message: errorMsg, success: false });
+      return res.status(401).json({ message: errorMsg, success: false });
     }
     const isPasswordEqual = await bcrypt.compare(password, user.password);
     if (!isPasswordEqual) {
-      return res.status(403).json({ message: errorMsg, success: false });
+      return res.status(401).json({ message: errorMsg, success: false });
     }
     const jwtToken = jwt.sign(
       { id: user.id, email: user.email, role: user.role },
