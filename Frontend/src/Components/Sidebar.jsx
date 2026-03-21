@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { CalendarPlus, ClipboardList, Stethoscope, LogOut } from "lucide-react";
+import { CalendarPlus, CalendarDays, ClipboardList, Stethoscope, LogOut } from "lucide-react";
 
 export default function Sidebar() {
   const location = useLocation();
@@ -30,6 +30,11 @@ export default function Sidebar() {
           },
         ]
       : [
+          {
+            name: "Dashboard",
+            path: "/patient-dashboard",
+            icon: CalendarDays,
+          },
           {
             name: "Book Appointment",
             path: "/book",

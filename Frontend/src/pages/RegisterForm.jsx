@@ -22,6 +22,11 @@ export default function RegisterForm() {
       return;
     }
 
+    if (role === "DOCTOR" && !licenseNumber.trim()) {
+      toast.warning("Please provide a valid license number for doctor role");
+      return;
+    }
+
     try {
       const res = await axios.post(`${backend}/api/auth/register`, {
         name,

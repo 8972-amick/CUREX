@@ -67,7 +67,7 @@ export default function Navbar() {
         </NavLink>
 
         <NavLink
-          to="/history"
+          to="/my-appointments"
           className={({ isActive }) =>
             isActive
               ? "font-semibold text-emerald-500 border-b-2 border-emerald-500 pb-1"

@@ -36,10 +36,21 @@ export default function LoginForm() {
         localStorage.setItem("userName", res.data.user.name);
         localStorage.setItem("role", res.data.user.role || "PATIENT");
         toast.success("Login successful 🎉");
-        navigate("/");
+
+        const userRole = res.data.user.role || "PATIENT";
+        if (userRole === "DOCTOR") {
+          navigate("/dashboard");
+        } else if (userRole === "ADMIN") {
+          navigate("/admin");
+        } else {
+          navigate("/patient-dashboard");
+        }
       }
     } catch (err) {
-      toast.error(err?.response?.data?.message || "Invalid email or password");
+      console.error("Login error:", err?.response?.data || err);
+      toast.error(
+        err?.response?.data?.message || "Invalid email or password"
+      );
     }
   };
 
