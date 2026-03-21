@@ -20,7 +20,7 @@ model User {
   name      String
   email     String   @unique
   password  String
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now()) 
   posts     Post[]
 
   // ✅ Added missing opposite relations for Appointment
@@ -115,7 +115,7 @@ model Notification {
   user   User @relation(fields: [userId], references: [id])
   userId Int
 
-  @@index([userId, isRead])
+  @@index([userId, isRead]) 
 }
 
 model Chat {
