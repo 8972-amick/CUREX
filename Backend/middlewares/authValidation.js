@@ -6,7 +6,7 @@ export const signUpValidation = (req, res, next) => {
     name: joi.string().min(3).max(100).required(),
     email: joi.string().email().required(),
     password: joi.string().min(4).max(100).required(),
-    role: joi.string().valid("PATIENT", "DOCTOR").optional(),
+    role: joi.string().valid("PATIENT", "DOCTOR", "ADMIN").optional(),
     licenseNumber: joi.string().when("role", {
       is: "DOCTOR",
       then: joi.string().min(1).required(),
