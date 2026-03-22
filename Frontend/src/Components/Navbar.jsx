@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { BellDot, Settings } from "lucide-react";
 
 export default function Navbar() {
-
+  const navigate = useNavigate();
   const [user, setUser] = useState({ name: "", email: "" });
+  const [unreadCount, setUnreadCount] = useState(0);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -21,6 +22,20 @@ export default function Navbar() {
       })
       .then((data) => setUser({ name: data.name, email: data.email }))
       .catch((err) => console.error("Error fetching user:", err));
+  }, []);
+
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    if (!userId) return;
+
+    fetch(`http://localhost:3000/api/notifications/user/${userId}/unread-count`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setUnreadCount(data.unreadCount);
+        }
+      })
+      .catch((err) => console.error("Error fetching unread count:", err));
   }, []);
 
   return (
@@ -96,7 +111,18 @@ export default function Navbar() {
       {/* RIGHT SECTION */}
       <div className="flex items-center gap-5">
 
-        <BellDot className="w-5 h-5 text-gray-600 dark:text-gray-300 hover:text-emerald-500 cursor-pointer transition" />
+        <div
+          className="relative cursor-pointer"
+          onClick={() => navigate("/notification")}
+          title="View Notifications"
+        >
+          <BellDot className="w-5 h-5 text-gray-600 dark:text-gray-300 hover:text-emerald-500 transition" />
+          {unreadCount > 0 && (
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+              {unreadCount > 9 ? "9+" : unreadCount}
+            </span>
+          )}
+        </div>
 
         <Settings className="w-5 h-5 text-gray-600 dark:text-gray-300 hover:text-emerald-500 cursor-pointer transition" />
 

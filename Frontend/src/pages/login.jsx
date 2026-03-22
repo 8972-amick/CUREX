@@ -30,8 +30,11 @@ export default function LoginForm() {
         password,
       });
 
-      if (res.status === 200 && res.data.token) {
+      if (res.status === 200 && res.data.token && res.data.user) {
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userId", res.data.user.id);
+        localStorage.setItem("userName", res.data.user.name);
+        localStorage.setItem("userEmail", res.data.user.email);
         toast.success("Login successful 🎉");
         navigate("/");
       }
