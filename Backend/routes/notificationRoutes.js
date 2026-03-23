@@ -1,31 +1,23 @@
 import express from "express";
 import {
   createNotification,
+  createBulkNotification,
   getNotifications,
   getUnreadCount,
   markAsRead,
   markAllAsRead,
-  deleteNotification
+  deleteNotification,
+  deleteAllNotifications
 } from "../controllers/notificationControllers.js";
 
 const notificationRouter = express.Router();
 
-// Create a new notification
-notificationRouter.post('/create', createNotification);
-
-// Get all notifications for a user
-notificationRouter.get('/user/:userId', getNotifications);
-
-// Get unread notifications count for a user
-notificationRouter.get('/user/:userId/unread-count', getUnreadCount);
-
-// Mark a specific notification as read
-notificationRouter.put('/:notificationId/read', markAsRead);
-
-// Mark all notifications as read for a user
-notificationRouter.put('/user/:userId/read-all', markAllAsRead);
-
-// Delete a notification
-notificationRouter.delete('/:notificationId', deleteNotification);
-
+notificationRouter.post("/create", createNotification);
+notificationRouter.post("/bulk", createBulkNotification);
+notificationRouter.get("/user/:userId", getNotifications);
+notificationRouter.get("/user/:userId/unread-count", getUnreadCount);
+notificationRouter.put("/:notificationId/read", markAsRead);
+notificationRouter.put("/user/:userId/read-all", markAllAsRead);
+notificationRouter.delete("/:notificationId", deleteNotification);
+notificationRouter.delete("/user/:userId/all", deleteAllNotifications);
 export default notificationRouter;
