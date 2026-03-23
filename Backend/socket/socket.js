@@ -26,6 +26,9 @@ export const initSocket = (server) => {
     socket.on("sendMessage", async (data) => {
       try {
         const { chatId, senderId, text } = data;
+        if (!chatId || !senderId || !text || typeof text !== "string" || !text.trim()) {
+          return;
+        }
 
         const message = await prisma.message.create({
           data: {

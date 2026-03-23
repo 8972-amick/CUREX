@@ -36,7 +36,6 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/license", licenseRoute);
 app.use("/api/chat", chatRoutes);
 
-
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`🚀 Server is running on http://localhost:${PORT}`);
 });

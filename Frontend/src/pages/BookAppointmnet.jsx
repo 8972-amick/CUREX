@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import Navbar from "../Components/Navbar";
 import Sidebar from "../Components/Sidebar";
 
+const API = "http://localhost:3000";
 
 export default function BookAppointment() {
   const [doctorId, setDoctorId] = useState("");
+  const [doctors, setDoctors] = useState([]);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [loadingDoctors, setLoadingDoctors] = useState(true);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
@@ -18,6 +20,19 @@ export default function BookAppointment() {
     const role = localStorage.getItem("role");
     if (role !== "PATIENT") {
       navigate("/");
+      return;
+    }
+    const token = localStorage.getItem("token");
+    if (token) {
+      axios
+        .get(`${API}/api/appointments/doctors`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => setDoctors(res.data))
+        .catch(() => setDoctors([]))
+        .finally(() => setLoadingDoctors(false));
+    } else {
+      setLoadingDoctors(false);
     }
   }, [navigate]);
 
@@ -39,7 +54,7 @@ export default function BookAppointment() {
       }
 
       await axios.post(
-        "http://localhost:3000/api/appointments/create",
+        `${API}/api/appointments/create`,
         {
           doctorId: Number(doctorId),
           appointmentDate: date,
@@ -85,14 +100,26 @@ export default function BookAppointment() {
               </div>
             )}
 
-            <input
-              type="number"
-              placeholder="Doctor ID"
-              className="w-full border p-3 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-primary"
-              value={doctorId}
-              onChange={(e) => setDoctorId(e.target.value)}
-              disabled={isLoading}
-            />
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Doctor</label>
+              <select
+                className="w-full border p-3 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-primary"
+                value={doctorId}
+                onChange={(e) => setDoctorId(e.target.value)}
+                disabled={isLoading || loadingDoctors}
+              >
+                <option value="">{loadingDoctors ? "Loading doctors..." : "Select a doctor"}</option>
+                {doctors.map((d) => (
+                  <option key={d.id} value={d.id}>
+                    Dr. {d.name}
+                    {d.licenseNumber ? ` (${d.licenseNumber})` : ""}
+                  </option>
+                ))}
+              </select>
+              {!loadingDoctors && doctors.length === 0 && (
+                <p className="text-sm text-amber-600 -mt-2 mb-2">No verified doctors available yet.</p>
+              )}
+            </div>
 
             <input
               type="date"

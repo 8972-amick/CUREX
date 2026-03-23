@@ -6,6 +6,48 @@ import { requireRole } from "../middlewares/roleMiddleware.js";
 
 const router = express.Router();
 
+// Get verified doctors (for patients to select when booking)
+router.get("/doctors", authMiddleware, async (req, res) => {
+  try {
+    const doctors = await prisma.user.findMany({
+      where: {
+        role: "DOCTOR",
+        isVerified: true,
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        licenseNumber: true,
+      },
+    });
+    res.json(doctors);
+  } catch (error) {
+    console.error("FETCH DOCTORS ERROR:", error);
+    res.status(500).json({ error: "Failed to fetch doctors" });
+  }
+});
+
+// Get patients (for doctors to select when starting chat - patients with appointments)
+router.get("/patients", authMiddleware, requireRole("DOCTOR"), async (req, res) => {
+  try {
+    const appointments = await prisma.appointment.findMany({
+      where: { doctorId: req.user.id },
+      select: { patientId: true },
+      distinct: ["patientId"],
+    });
+    const patientIds = appointments.map((a) => a.patientId);
+    const patients = await prisma.user.findMany({
+      where: { id: { in: patientIds } },
+      select: { id: true, name: true, email: true },
+    });
+    res.json(patients);
+  } catch (error) {
+    console.error("FETCH PATIENTS ERROR:", error);
+    res.status(500).json({ error: "Failed to fetch patients" });
+  }
+});
+
 // Helper function to create notifications
 const createNotification = async (userId, title, message, type = "APPOINTMENT_STATUS_UPDATE") => {
   try {
