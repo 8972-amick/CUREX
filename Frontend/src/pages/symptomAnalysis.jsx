@@ -17,6 +17,7 @@ const symptomAnalysis = () => {
 
         <p className="text-gray-600 mb-6">
           Enter your symptoms below. This tool does not replace a doctor.
+          for example: fever, headache, sore throat
         </p>
 
         <textarea
@@ -24,6 +25,7 @@ const symptomAnalysis = () => {
           placeholder="e.g. fever, headache, sore throat"
           value={symptoms}
           onChange={(e) => setSymptoms(e.target.value)}
+          
           className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-emerald-400"
         />
 
