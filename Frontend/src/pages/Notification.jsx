@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
+import React, { useState, useEffect, useCallback } from 'react';
+import api from '../services/api';
 const Notification = () => {
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -10,17 +9,11 @@ const Notification = () => {
   // Get user ID from localStorage (assuming it's stored after login)
   const userId = localStorage.getItem('userId');
 
-  useEffect(() => {
-    if (userId) {
-      fetchNotifications();
-      fetchUnreadCount();
-    }
-  }, [userId]);
-
-  const fetchNotifications = async () => {
+  const fetchNotifications = useCallback(async () => {
+    if (!userId) return;
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:3000/api/notifications/user/${userId}`);
+      const response = await api.get(`/api/notifications/user/${userId}`);
       if (response.data.success) {
         setNotifications(response.data.notifications);
       }
@@ -30,22 +23,30 @@ const Notification = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userId]);
 
-  const fetchUnreadCount = async () => {
+  const fetchUnreadCount = useCallback(async () => {
+    if (!userId) return;
     try {
-      const response = await axios.get(`http://localhost:3000/api/notifications/user/${userId}/unread-count`);
+      const response = await api.get(`/api/notifications/user/${userId}/unread-count`);
       if (response.data.success) {
         setUnreadCount(response.data.unreadCount);
       }
     } catch (err) {
       console.error('Error fetching unread count:', err);
     }
-  };
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
+      fetchNotifications();
+      fetchUnreadCount();
+    }
+  }, [userId, fetchNotifications, fetchUnreadCount]);
 
   const markAsRead = async (notificationId) => {
     try {
-      await axios.put(`http://localhost:3000/api/notifications/${notificationId}/read`);
+      await api.put(`/api/notifications/${notificationId}/read`);
       // Update local state
       setNotifications(notifications.map(notif =>
         notif.id === notificationId ? { ...notif, isRead: true } : notif
@@ -58,7 +59,7 @@ const Notification = () => {
 
   const markAllAsRead = async () => {
     try {
-      await axios.put(`http://localhost:3000/api/notifications/user/${userId}/read-all`);
+      await api.put(`/api/notifications/user/${userId}/read-all`);
       setNotifications(notifications.map(notif => ({ ...notif, isRead: true })));
       setUnreadCount(0);
     } catch (err) {
@@ -68,7 +69,7 @@ const Notification = () => {
 
   const deleteNotification = async (notificationId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/notifications/${notificationId}`);
+      await api.delete(`/api/notifications/${notificationId}`);
       setNotifications(notifications.filter(notif => notif.id !== notificationId));
       // Update unread count if deleted notification was unread
       const deletedNotif = notifications.find(notif => notif.id === notificationId);

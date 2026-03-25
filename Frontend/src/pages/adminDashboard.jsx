@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Sidebar from "../Components/Sidebar";
+import api from "../services/api";
+
 
 const AdminDashboard = () => {
   const [doctors, setDoctors] = useState([]);
@@ -16,10 +16,7 @@ const AdminDashboard = () => {
     setLoading(true);
     setError(null);
     try {
-      const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:3000/api/admin/doctors", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await api.get("/api/admin/doctors");
       const doctorData = res.data;
       setDoctors(doctorData);
 
@@ -38,12 +35,7 @@ const AdminDashboard = () => {
 
   const verifyDoctor = async (id) => {
     try {
-      const token = localStorage.getItem("token");
-      await axios.put(
-        `http://localhost:3000/api/admin/doctors/${id}/verify`,
-        {},
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      await api.put(`/api/admin/doctors/${id}/verify`, {});
       await fetchDoctors();
     } catch (err) {
       console.error("Error verifying doctor:", err?.response?.data || err);
@@ -53,10 +45,6 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen flex bg-gray-50 dark:bg-slate-900">
-      <aside className="hidden md:block">
-        <Sidebar />
-      </aside>
-
       <div className="flex-1 flex flex-col">
         <main className="p-6">
           <div className="mb-8">

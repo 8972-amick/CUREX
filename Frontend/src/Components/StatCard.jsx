@@ -1,6 +1,7 @@
 import React from "react";
 
-const StatCard = ({ label, value, icon: Icon, color }) => {
+const StatCard = ({ label, value, icon, color }) => {
+  const Icon = icon;
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm flex items-center gap-4 hover:shadow-md transition">
       

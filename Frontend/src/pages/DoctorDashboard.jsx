@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-// import Navbar from "../Components/Navbar";
-import Sidebar from "../Components/Sidebar";
+import api from "../services/api";
 
 
 export default function DoctorDashboard() {
@@ -10,14 +7,6 @@ export default function DoctorDashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [updatingId, setUpdatingId] = useState(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const role = localStorage.getItem("role");
-    if (role !== "DOCTOR") {
-      navigate("/");
-    }
-  }, [navigate]);
 
   useEffect(() => {
     fetchAppointments();
@@ -27,17 +16,8 @@ export default function DoctorDashboard() {
     try {
       setIsLoading(true);
       setError(null);
-      const token = localStorage.getItem("token");
 
-      if (!token) {
-        setError("Not authenticated. Please log in.");
-        return;
-      }
-
-      const res = await axios.get(
-        "http://localhost:3000/api/appointments/doctor",
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const res = await api.get("/api/appointments/doctor");
 
       setAppointments(res.data);
     } catch (err) {
@@ -51,13 +31,8 @@ export default function DoctorDashboard() {
   const updateStatus = async (id, status) => {
     try {
       setUpdatingId(id);
-      const token = localStorage.getItem("token");
 
-      await axios.put(
-        `http://localhost:3000/api/appointments/update/${id}`,
-        { status },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      await api.put(`/api/appointments/update/${id}`, { status });
 
       fetchAppointments();
     } catch (err) {
@@ -69,15 +44,11 @@ export default function DoctorDashboard() {
   };
 
   return (
-    <>
+    <div className="p-10">
       {/* <Navbar /> */}
-      <div className="flex bg-background">
-        <Sidebar />
-
-        <div className="flex-1 p-10">
-          <h2 className="text-2xl font-bold text-primary mb-6">
-            Doctor Dashboard
-          </h2>
+      <h2 className="text-2xl font-bold text-primary mb-6">
+        Doctor Dashboard
+      </h2>
 
           {isLoading && (
             <div className="flex justify-center items-center h-64">
@@ -139,8 +110,6 @@ export default function DoctorDashboard() {
               </div>
             ))}
           </div>
-        </div>
-      </div>
-    </>
+    </div>
   );
 }

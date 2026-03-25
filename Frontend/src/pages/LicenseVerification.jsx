@@ -1,27 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../Components/Sidebar";
-import Navbar from "../Components/Navbar";
 import axios from "axios";
+
 
 const LicenseVerification = () => {
   const [doctors, setDoctors] = useState([]);
 
-  useEffect(() => {
-    fetchDoctors();
-  }, []);
-
   const fetchDoctors = async () => {
     try {
-      const token = localStorage.getItem("token");
-
-      const res = await axios.get(
-        "http://localhost:3000/api/admin/doctors",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await api.get("/api/admin/doctors");
 
       setDoctors(res.data);
     } catch (error) {
@@ -29,19 +15,13 @@ const LicenseVerification = () => {
     }
   };
 
+  useEffect(() => {
+    fetchDoctors();
+  }, []);
+
   const handleVerify = async (doctorId) => {
     try {
-      const token = localStorage.getItem("token");
-
-      await axios.put(
-        `http://localhost:3000/api/admin/verify/${doctorId}`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await api.put(`/api/admin/doctors/${doctorId}/verify`, {});
 
       fetchDoctors();
     } catch (error) {
@@ -113,6 +93,7 @@ const LicenseVerification = () => {
           </div>
         </main>
       </div>
+
     </div>
   );
 };

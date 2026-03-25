@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import Footer from "../Components/footer.jsx";
+
 
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import Footer from "../components/Footer";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -32,11 +33,11 @@ const ContactUs = () => {
       setSubmitStatus("success");
       setFormData({ name: "", email: "", subject: "", message: "" });
       setTimeout(() => setSubmitStatus(null), 5000);
-    } catch (error) {
+    } catch (err) {
+      console.error("Error submitting contact form:", err);
       setSubmitStatus("error");
       setTimeout(() => setSubmitStatus(null), 5000);
-    } finally {
-      setIsSubmitting(false);
+    } finally {      setIsSubmitting(false);
     }
   };
 
@@ -264,8 +265,8 @@ const ContactUs = () => {
             </div>
           </div>
         </div>
+        <Footer/>
       </div>
-      <Footer />
     </>
   );
 };

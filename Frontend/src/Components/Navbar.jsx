@@ -4,16 +4,12 @@ import { BellDot, Settings } from "lucide-react";
 
 export default function Navbar() {
 
-  const [user, setUser] = useState({ name: "", email: "", role: "PATIENT" });
+  const initialRole = localStorage.getItem("role")?.toUpperCase() || "PATIENT";
+  const [user, setUser] = useState({ name: "", email: "", role: initialRole });
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const role = localStorage.getItem("role");
     if (!token) return;
-
-    if (role) {
-      setUser((prev) => ({ ...prev, role }));
-    }
 
     fetch("http://localhost:3000/api/auth/me", {
       headers: {
@@ -25,11 +21,12 @@ export default function Navbar() {
         return res.json();
       })
       .then((data) => {
-        setUser({ name: data.name, email: data.email, role: data.role || role || "PATIENT" });
-        localStorage.setItem("role", data.role || role || "PATIENT");
+        const newRole = data.role?.toUpperCase() || initialRole;
+        setUser({ name: data.name, email: data.email, role: newRole });
+        localStorage.setItem("role", newRole);
       })
       .catch((err) => console.error("Error fetching user:", err));
-  }, []);
+  }, [initialRole]);
 
   return (
     <div className="w-full flex items-center justify-between px-7 py-3 bg-white dark:bg-slate-900 shadow-sm sticky top-0 z-50">
@@ -67,14 +64,14 @@ export default function Navbar() {
         </NavLink>
 
         <NavLink
-          to="/my-appointments"
+          to="/MyAppointments"
           className={({ isActive }) =>
             isActive
               ? "font-semibold text-emerald-500 border-b-2 border-emerald-500 pb-1"
               : "text-gray-700 dark:text-gray-200 hover:text-emerald-500 transition"
           }
         >
-          History
+         Appoinments
         </NavLink>
 
         <NavLink

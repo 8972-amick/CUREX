@@ -1,23 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-// import Navbar from "../Components/Navbar.jsx";
-import Sidebar from "../Components/Sidebar.jsx";
+import api from "../services/api";
 
 
 export default function MyAppointments() {
   const [appointments, setAppointments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const role = localStorage.getItem("role");
-    if (role !== "PATIENT") {
-      navigate("/");
-    }
-  }, [navigate]);
-
   useEffect(() => {
     fetchAppointments();
   }, []);
@@ -26,17 +14,8 @@ export default function MyAppointments() {
     try {
       setIsLoading(true);
       setError(null);
-      const token = localStorage.getItem("token");
 
-      if (!token) {
-        setError("Not authenticated. Please log in.");
-        return;
-      }
-
-      const res = await axios.get(
-        "http://localhost:3000/api/appointments/patient",
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const res = await api.get("/api/appointments/patient");
 
       setAppointments(res.data);
     } catch (err) {
@@ -48,11 +27,9 @@ export default function MyAppointments() {
   };
 
   return (
-    <>
+    <div>
       {/* <Navbar /> */}
       <div className="flex bg-background">
-        <Sidebar />
-
         <div className="flex-1 p-10">
           <h2 className="text-2xl font-bold text-primary mb-6">
             My Appointments
@@ -98,6 +75,6 @@ export default function MyAppointments() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

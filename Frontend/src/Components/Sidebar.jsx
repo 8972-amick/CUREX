@@ -1,12 +1,21 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { CalendarPlus, CalendarDays, ClipboardList, Stethoscope, LogOut } from "lucide-react";
+import { useAuth } from "../Context/AuthContext";
+import {
+  CalendarPlus,
+  CalendarDays,
+  ClipboardList,
+  Stethoscope,
+  LogOut,
+} from "lucide-react";
 
 export default function Sidebar() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const role = localStorage.getItem("role") || "PATIENT";
 
+  // ✅ FIXED ROUTES
   const menu =
     role === "DOCTOR"
       ? [
@@ -16,8 +25,8 @@ export default function Sidebar() {
             icon: Stethoscope,
           },
           {
-            name: "My Appointments",
-            path: "/my-appointments",
+            name: "Appointments",
+            path: "/doctor", // you can later make /doctor/appointments
             icon: ClipboardList,
           },
         ]
@@ -32,29 +41,29 @@ export default function Sidebar() {
       : [
           {
             name: "Dashboard",
-            path: "/patient-dashboard",
+            path: "/patient",
             icon: CalendarDays,
           },
           {
             name: "Book Appointment",
-            path: "/book",
+            path: "/patient/book",
             icon: CalendarPlus,
           },
           {
             name: "My Appointments",
-            path: "/my-appointments",
+            path: "/patient/my-appointments",
             icon: ClipboardList,
           },
         ];
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    logout(); // Use logout from AuthContext
     navigate("/login");
   };
 
   return (
     <div className="bg-white dark:bg-slate-900 w-64 min-h-screen shadow-lg p-6 border-r border-gray-200 dark:border-slate-700 flex flex-col justify-between">
-
+      
       {/* Top Section */}
       <div>
         {/* Title */}
@@ -66,7 +75,9 @@ export default function Sidebar() {
         <div className="flex flex-col gap-2">
           {menu.map((item) => {
             const Icon = item.icon;
-            const active = location.pathname === item.path;
+
+            // ✅ FIXED ACTIVE LOGIC
+            const active = location.pathname.startsWith(item.path);
 
             return (
               <Link
@@ -97,7 +108,6 @@ export default function Sidebar() {
           Logout
         </button>
       </div>
-
     </div>
   );
 }

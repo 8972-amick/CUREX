@@ -1,9 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { io } from "socket.io-client";
-import axios from "axios";
+import api, { BASE_URL } from "../services/api";
 import { toast } from "react-toastify";
-
-const backendUrl = "http://localhost:3000";
+import axios from "axios";
 
 const Chat = () => {
   const [chats, setChats] = useState([]);
@@ -50,23 +49,16 @@ const Chat = () => {
 
     fetchChats();
 
-    const token = localStorage.getItem("token");
-    if (token) {
-      axios
-        .get(`${backendUrl}/api/appointments/doctors`, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((res) => setDoctors(res.data || []))
-        .catch(() => setDoctors([]));
+    api
+      .get("/api/appointments/doctors")
+      .then((res) => setDoctors(res.data || []))
+      .catch(() => setDoctors([]));
 
-      if (userRole === "DOCTOR") {
-        axios
-          .get(`${backendUrl}/api/appointments/patients`, {
-            headers: { Authorization: `Bearer ${token}` },
-          })
-          .then((res) => setPatients(res.data || []))
-          .catch(() => setPatients([]));
-      }
+    if (userRole === "DOCTOR") {
+      api
+        .get("/api/appointments/patients")
+        .then((res) => setPatients(res.data || []))
+        .catch(() => setPatients([]));
     }
 
     return () => {
@@ -74,6 +66,8 @@ const Chat = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId, userRole]);
+
+  const backendUrl = BASE_URL; // Use BASE_URL from api service
 
   useEffect(() => {
     if (!activeChat || !socketRef.current) return;
@@ -214,13 +208,13 @@ const Chat = () => {
   const otherLabel = userRole === "DOCTOR" ? "patient" : "doctor";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-teal-50/40">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50/30 to-teal-50/40">
       <div className="max-w-6xl mx-auto h-screen flex flex-col lg:flex-row">
         {/* Sidebar - conversations */}
-        <aside className="w-full lg:w-80 flex-shrink-0 bg-white/90 backdrop-blur border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col">
+        <aside className="w-full lg:w-80 shrink-0 bg-white/90 backdrop-blur border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col">
           <div className="p-4 border-b border-slate-200 bg-white">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-teal-600 flex items-center justify-center text-white text-lg shadow-lg">
+              <div className="w-10 h-10 rounded-xl bg-linear-to-br from-blue-500 to-teal-600 flex items-center justify-center text-white text-lg shadow-lg">
                 💬
               </div>
               <div>

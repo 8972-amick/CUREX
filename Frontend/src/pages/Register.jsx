@@ -1,51 +1,51 @@
-import axios from "axios";
-import { useState } from "react";
+import React from "react";
+// import axios from "axios";
+// import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
-const backend = "http://localhost:3000";
-
-export default function RegisterForm() {
+export default function Register() {
+  // FRONTEND ONLY — comment out all backend/state logic
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("PATIENT");
-  const [licenseNumber, setLicenseNumber] = useState("");
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [role, setRole] = useState("PATIENT");
+  // const [licenseNumber, setLicenseNumber] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-    if (!name || !email || !password) {
-      toast.warning("Please fill in all fields");
-      return;
-    }
+  //   if (!name || !email || !password) {
+  //     toast.warning("Please fill in all fields");
+  //     return;
+  //   }
 
-    if (role === "DOCTOR" && !licenseNumber.trim()) {
-      toast.warning("Please provide a valid license number for doctor role");
-      return;
-    }
+  //   if (role === "DOCTOR" && !licenseNumber.trim()) {
+  //     toast.warning("Please provide a valid license number for doctor role");
+  //     return;
+  //   }
 
-    try {
-      const res = await axios.post(`${backend}/api/auth/register`, {
-        name,
-        email,
-        password,
-        role,
-        licenseNumber,
-      });
+  //   try {
+  //     const res = await axios.post(`${backend}/api/auth/register`, {
+  //       name,
+  //       email,
+  //       password,
+  //       role,
+  //       licenseNumber,
+  //     });
 
-      if (res.status === 201) {
-        toast.success("Registration successful 🎉");
-        navigate("/login");
-      }
-    } catch (err) {
-      toast.error(
-        err?.response?.data?.message || "Registration failed"
-      );
-    }
-  };
+  //     if (res.status === 201) {
+  //       toast.success("Registration successful 🎉");
+  //       navigate("/login");
+  //     }
+  //   } catch (err) {
+  //     toast.error(
+  //       err?.response?.data?.message || "Registration failed"
+  //     );
+  //   }
+  // };
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-[#0f172a] relative overflow-hidden">
@@ -69,7 +69,7 @@ export default function RegisterForm() {
             </h2>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-slate-300 mb-2">
                 Full name
@@ -77,8 +77,8 @@ export default function RegisterForm() {
               <input
                 type="text"
                 placeholder="John Doe"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                // value={name}
+                // onChange={(e) => setName(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition"
               />
             </div>
@@ -90,8 +90,8 @@ export default function RegisterForm() {
               <input
                 type="email"
                 placeholder="you@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                // value={email}
+                // onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition"
               />
             </div>
@@ -103,8 +103,8 @@ export default function RegisterForm() {
               <input
                 type="password"
                 placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                // value={password}
+                // onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition"
               />
             </div>
@@ -114,8 +114,8 @@ export default function RegisterForm() {
                 I am a
               </label>
               <select
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
+                // value={role}
+                // onChange={(e) => setRole(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-600 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition"
               >
                 <option value="PATIENT">Patient</option>
@@ -123,7 +123,8 @@ export default function RegisterForm() {
               </select>
             </div>
 
-            {role === "DOCTOR" && (
+            {/* Doctor license input commented out */}
+            {/* {role === "DOCTOR" && (
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
                   Medical License Number
@@ -131,12 +132,12 @@ export default function RegisterForm() {
                 <input
                   type="text"
                   placeholder="e.g. NMC-12345"
-                  value={licenseNumber}
-                  onChange={(e) => setLicenseNumber(e.target.value)}
+                  // value={licenseNumber}
+                  // onChange={(e) => setLicenseNumber(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition"
                 />
               </div>
-            )}
+            )} */}
 
             <button
               type="submit"

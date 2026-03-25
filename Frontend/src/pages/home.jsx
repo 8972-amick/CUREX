@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../Components/footer";
+import Footer from "../components/Footer";
 
 const images = [
-  "/public/1curex.jpg",
-  "/public/2cu.jpg",
-  "/public/image1.jpg",
-  
+  "/1curex.jpg",
+  "/2cu.jpg",
+  "/image1.jpg",
 ];
 
 const Home = () => {
@@ -70,7 +69,7 @@ const Home = () => {
 
 
               <button
-                onClick={() => navigate("/symptoms")}
+                onClick={() => navigate("patient/symptoms")}
                 className="px-6 py-3 bg-white/10 backdrop-blur text-white border border-white/30 font-semibold rounded-md hover:bg-white hover:text-black transition"
               >
                 Symptom Analysis
@@ -140,8 +139,9 @@ const Home = () => {
 
         </div>
       </section>
+      
 
-      <Footer />
+ 
 
     </div>
   );

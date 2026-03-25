@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../Components/Sidebar";
 import { CalendarDays, UserCheck, Users, MessageCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Sidebar from "../components/Sidebar";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -23,41 +23,41 @@ export default function Dashboard() {
   });
 
   useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        const res = await axios.get(
+          "http://localhost:3000/api/appointments/doctor",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        const data = res.data;
+        setAppointments(data);
+
+        const upcoming = data.filter(
+          (a) => a.status === "PENDING" || a.status === "APPROVED"
+        ).length;
+
+        const checkedIn = data.filter((a) => a.status === "COMPLETED").length;
+
+        const uniquePatients = new Set(data.map((a) => a.patientId)).size;
+
+        setStats({
+          upcoming,
+          patients: uniquePatients,
+          checkedIn,
+          messages: 0,
+        });
+      } catch (error) {
+        console.error("Dashboard fetch error:", error);
+      }
+    };
+
     fetchAppointments();
   }, []);
-
-  const fetchAppointments = async () => {
-    try {
-      const token = localStorage.getItem("token");
-
-      const res = await axios.get(
-        "http://localhost:3000/api/appointments/doctor",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-
-      const data = res.data;
-      setAppointments(data);
-
-      const upcoming = data.filter(
-        (a) => a.status === "PENDING" || a.status === "APPROVED"
-      ).length;
-
-      const checkedIn = data.filter((a) => a.status === "COMPLETED").length;
-
-      const uniquePatients = new Set(data.map((a) => a.patientId)).size;
-
-      setStats({
-        upcoming,
-        patients: uniquePatients,
-        checkedIn,
-        messages: 0,
-      });
-    } catch (error) {
-      console.error("Dashboard fetch error:", error);
-    }
-  };
 
   const statCards = [
     {

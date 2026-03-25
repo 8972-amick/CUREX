@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../Components/Sidebar";
-
-const API = "http://localhost:3000";
+import api from "../services/api";
 
 export default function BookAppointment() {
   const [doctorId, setDoctorId] = useState("");
@@ -17,24 +14,12 @@ export default function BookAppointment() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const role = localStorage.getItem("role");
-    if (role !== "PATIENT") {
-      navigate("/");
-      return;
-    }
-    const token = localStorage.getItem("token");
-    if (token) {
-      axios
-        .get(`${API}/api/appointments/doctors`, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((res) => setDoctors(res.data))
-        .catch(() => setDoctors([]))
-        .finally(() => setLoadingDoctors(false));
-    } else {
-      setLoadingDoctors(false);
-    }
-  }, [navigate]);
+    api
+      .get("/api/appointments/doctors")
+      .then((res) => setDoctors(res.data))
+      .catch(() => setDoctors([]))
+      .finally(() => setLoadingDoctors(false));
+  }, []);
 
   const handleBook = async () => {
     if (!doctorId || !date || !time) {
@@ -46,21 +31,14 @@ export default function BookAppointment() {
       setIsLoading(true);
       setError(null);
       setSuccess(false);
-      const token = localStorage.getItem("token");
 
-      if (!token) {
-        setError("Not authenticated. Please log in.");
-        return;
-      }
-
-      await axios.post(
-        `${API}/api/appointments/create`,
+      await api.post(
+        "/api/appointments/create",
         {
           doctorId: Number(doctorId),
           appointmentDate: date,
           appointmentTime: time,
-        },
-        { headers: { Authorization: `Bearer ${token}` } }
+        }
       );
 
       setSuccess(true);
@@ -77,11 +55,9 @@ export default function BookAppointment() {
   };
 
   return (
-    <>
+    <div>
       {/* <Navbar /> */}
       <div className="flex bg-background">
-        <Sidebar />
-
         <div className="flex-1  p-10">
           <div className="bg-white p-8 rounded-xl shadow-md max-w-lg">
             <h2 className="text-2xl font-bold text-primary mb-6">
@@ -147,6 +123,7 @@ export default function BookAppointment() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
+
