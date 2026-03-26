@@ -2,17 +2,9 @@ import React, { useEffect, useState } from "react";
 import { CalendarDays, UserCheck, Users, MessageCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Sidebar from "../components/Sidebar";
-
+import Sidebar from "../Components/Sidebar";
 export default function Dashboard() {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const role = localStorage.getItem("role");
-    if (role !== "DOCTOR") {
-      navigate("/");
-    }
-  }, [navigate]);
 
   const [appointments, setAppointments] = useState([]);
   const [stats, setStats] = useState({
@@ -22,10 +14,27 @@ export default function Dashboard() {
     messages: 0,
   });
 
+  // ✅ Role Protection
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+
+    if (!role) return; // wait until role is available
+
+    if (role !== "DOCTOR") {
+      navigate("/");
+    }
+  }, [navigate]);
+
+  // ✅ Fetch Appointments Safely
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
         const token = localStorage.getItem("token");
+
+        if (!token) {
+          navigate("/login");
+          return;
+        }
 
         const res = await axios.get(
           "http://localhost:3000/api/appointments/doctor",
@@ -34,16 +43,21 @@ export default function Dashboard() {
           }
         );
 
-        const data = res.data;
+        const data = res.data || [];
+
         setAppointments(data);
 
         const upcoming = data.filter(
           (a) => a.status === "PENDING" || a.status === "APPROVED"
         ).length;
 
-        const checkedIn = data.filter((a) => a.status === "COMPLETED").length;
+        const checkedIn = data.filter(
+          (a) => a.status === "COMPLETED"
+        ).length;
 
-        const uniquePatients = new Set(data.map((a) => a.patientId)).size;
+        const uniquePatients = new Set(
+          data.map((a) => a.patientId)
+        ).size;
 
         setStats({
           upcoming,
@@ -53,11 +67,12 @@ export default function Dashboard() {
         });
       } catch (error) {
         console.error("Dashboard fetch error:", error);
+        navigate("/login"); // fallback
       }
     };
 
     fetchAppointments();
-  }, []);
+  }, [navigate]);
 
   const statCards = [
     {
@@ -93,12 +108,12 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-slate-900 flex">
       
+      {/* Sidebar */}
       <aside className="hidden md:block">
         <Sidebar />
       </aside>
 
       <div className="flex-1 flex flex-col">
-
         <main className="p-6">
 
           {/* Welcome Section */}
@@ -145,35 +160,41 @@ export default function Dashboard() {
               </h2>
 
               <div className="space-y-3">
-                {appointments.slice(0, 5).map((a) => (
-                  <div
-                    key={a.id}
-                    className="flex items-center justify-between p-3 border border-gray-200 dark:border-slate-700 rounded-lg"
-                  >
-                    <div>
-                      <div className="font-medium text-gray-800 dark:text-white">
-                        {a.patient?.name || "Patient"}
-                      </div>
-
-                      <div className="text-sm text-gray-500">
-                        {new Date(a.appointmentDate).toLocaleDateString()}{" "}
-                        {a.appointmentTime}
-                      </div>
-                    </div>
-
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        a.status === "PENDING"
-                          ? "bg-yellow-100 text-yellow-700"
-                          : a.status === "COMPLETED"
-                          ? "bg-emerald-100 text-emerald-700"
-                          : "bg-blue-100 text-blue-700"
-                      }`}
+                {appointments.length === 0 ? (
+                  <p className="text-sm text-gray-500">
+                    No appointments yet.
+                  </p>
+                ) : (
+                  appointments.slice(0, 5).map((a) => (
+                    <div
+                      key={a.id}
+                      className="flex items-center justify-between p-3 border border-gray-200 dark:border-slate-700 rounded-lg"
                     >
-                      {a.status}
-                    </span>
-                  </div>
-                ))}
+                      <div>
+                        <div className="font-medium text-gray-800 dark:text-white">
+                          {a.patient?.name || "Patient"}
+                        </div>
+
+                        <div className="text-sm text-gray-500">
+                          {new Date(a.appointmentDate).toLocaleDateString()}{" "}
+                          {a.appointmentTime}
+                        </div>
+                      </div>
+
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          a.status === "PENDING"
+                            ? "bg-yellow-100 text-yellow-700"
+                            : a.status === "COMPLETED"
+                            ? "bg-emerald-100 text-emerald-700"
+                            : "bg-blue-100 text-blue-700"
+                        }`}
+                      >
+                        {a.status}
+                      </span>
+                    </div>
+                  ))
+                )}
               </div>
             </section>
 

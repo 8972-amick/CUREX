@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 
 import { Mail, Phone, MapPin, Send } from "lucide-react";
-import Footer from "../components/Footer";
+import Footer from "../Components/Footer";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -43,8 +43,8 @@ const ContactUs = () => {
 
   return (
     <>
-     
-      <div className="min-h-screen bg-gradient-to-br from-teal-50 to-blue-50 py-12 px-4 sm:px-6 lg:px-8">
+
+      <div className="min-h-screen bg-gray-50 dark:bg-slate-900 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-16">

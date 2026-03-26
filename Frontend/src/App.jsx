@@ -3,19 +3,19 @@ import { AuthProvider } from "./Context/AuthContext";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import Layout from "./Components/Layout"; 
 import PublicLayout from "./Components/PublicLayout"; 
-import Home from "./pages/Home.jsx";
-import Login from "./pages/Login.jsx"; 
+import Home from "./pages/home.jsx";
+import Login from "./pages/login.jsx"; 
 import Register from "./pages/Register.jsx";
-import AboutUs from "./pages/AboutUs.jsx";
+import AboutUs from "./pages/aboutUs.jsx";
 import ContactUs from "./pages/contactUs.jsx";
 import PatientDashboard from "./pages/patientDashboard.jsx";
 import DoctorDashboard from "./pages/DoctorDashboard.jsx";
-import AdminDashboard from "./pages/AdminDashboard.jsx"; 
+import AdminDashboard from "./pages/adminDashboard.jsx"; 
 import MyAppointments from "./pages/MyAppointments.jsx";
 import BookAppointment from "./pages/BookAppointment.jsx";
 import SymptomAnalysis from "./pages/symptomAnalysis.jsx"; 
 import LicenseVerification from "./pages/LicenseVerification.jsx";
-import Chat from "./pages/Chat.jsx";
+import Chat from "./pages/chat.jsx";
 import Notification from "./pages/Notification.jsx";
 
 

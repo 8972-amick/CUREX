@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
+import Footer from "../Components/Footer.jsx";
 
 const images = [
   "/1curex.jpg",
@@ -139,10 +139,7 @@ const Home = () => {
 
         </div>
       </section>
-      
-
- 
-
+    
     </div>
   );
 };

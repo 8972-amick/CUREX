@@ -2,17 +2,13 @@ import React from "react";
 
 const Aboutus = () => {
   return (
-    <div className="flex h-10 bg-[#4b4446] mb-125 mt-0 pb-150">
-      {/* nav bar */}
-
-      <div className="flex-1 flex flex-col pt-20">
-        {/* main content */}
-
-        <section id="about" class="">
-          <div class="text-center max-w-3xl mx-auto mb-20 px-6 ">
-            <h1 class="text-4xl font-bold text-white mb-4">About Us</h1>
-            <p class="text-lg text-gray-600 leading-relaxed text-white">
-              <span class="font-semibold text-white"> Curex</span> is a
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-900 py-12">
+      <div className="max-w-6xl mx-auto px-6">
+        <section id="about">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">About Us</h1>
+            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+              <span className="font-semibold text-blue-600 dark:text-blue-400">Curex</span> is a
               cutting-edge healthcare platform designed to connect patients with
               top-tier doctors and streamline the appointment booking process.
               Our mission is to make healthcare accessible, efficient, and
@@ -25,9 +21,9 @@ const Aboutus = () => {
             </p>
           </div>
 
-          <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
-            <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-2xl  hover:scale-105 transition">
-              <i class="fas fa-bullseye text-4xl text-red-600 mb-4"></i>
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-8 text-center hover:shadow-2xl hover:scale-105 transition">
+              <i className="fas fa-bullseye text-4xl text-blue-600 dark:text-blue-400 mb-4"></i>
               <h3 class="text-2xl font-semibold mb-2">Our Mission</h3>
               <hr class="w-16 mx-auto border-b-4 border-red-600 mb-4" />
               <p class="text-gray-600 leading-relaxed">

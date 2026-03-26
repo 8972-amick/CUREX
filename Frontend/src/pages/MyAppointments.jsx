@@ -27,25 +27,23 @@ export default function MyAppointments() {
   };
 
   return (
-    <div>
-      {/* <Navbar /> */}
-      <div className="flex bg-background">
-        <div className="flex-1 p-10">
-          <h2 className="text-2xl font-bold text-primary mb-6">
-            My Appointments
-          </h2>
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-900">
+      <main className="p-6">
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
+          My Appointments
+        </h2>
 
           {isLoading && (
             <div className="flex justify-center items-center h-64">
               <div className="text-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-                <p className="text-gray-600">Loading appointments...</p>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                <p className="text-gray-600 dark:text-gray-300">Loading appointments...</p>
               </div>
             </div>
           )}
 
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4">
+            <div className="bg-red-100 dark:bg-red-900/50 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg mb-4">
               <strong>Error:</strong> {error}
             </div>
           )}
@@ -73,8 +71,7 @@ export default function MyAppointments() {
               
             ))}
           </div>
-        </div>
-      </div>
+        </main>
     </div>
   );
 }

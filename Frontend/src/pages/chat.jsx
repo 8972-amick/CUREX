@@ -193,10 +193,10 @@ const Chat = () => {
 
   if (!userId) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-100">
-        <div className="text-center p-8 bg-white rounded-2xl shadow-lg max-w-md">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-slate-900">
+        <div className="text-center p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-lg max-w-md">
           <div className="text-6xl mb-4">💬</div>
-          <p className="text-slate-600 text-lg">
+          <p className="text-slate-600 dark:text-gray-300 text-lg">
             Please log in to access the consultation chat.
           </p>
         </div>
@@ -208,18 +208,18 @@ const Chat = () => {
   const otherLabel = userRole === "DOCTOR" ? "patient" : "doctor";
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50/30 to-teal-50/40">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-900">
       <div className="max-w-6xl mx-auto h-screen flex flex-col lg:flex-row">
         {/* Sidebar - conversations */}
-        <aside className="w-full lg:w-80 shrink-0 bg-white/90 backdrop-blur border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col">
-          <div className="p-4 border-b border-slate-200 bg-white">
+        <aside className="w-full lg:w-80 shrink-0 bg-white dark:bg-slate-800 border-b lg:border-b-0 lg:border-r border-gray-200 dark:border-slate-700 flex flex-col">
+          <div className="p-4 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-linear-to-br from-blue-500 to-teal-600 flex items-center justify-center text-white text-lg shadow-lg">
+              <div className="w-10 h-10 rounded-xl bg-blue-500 flex items-center justify-center text-white text-lg shadow-lg">
                 💬
               </div>
               <div>
-                <h1 className="font-bold text-slate-800">Consultation Chat</h1>
-                <p className="text-xs text-slate-500">
+                <h1 className="font-bold text-gray-800 dark:text-white">Consultation Chat</h1>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
                   {userRole === "DOCTOR" ? "Your patients" : "Message your doctor"}
                 </p>
               </div>
@@ -227,12 +227,12 @@ const Chat = () => {
           </div>
 
           {otherList.length > 0 && (
-            <div className="p-3 border-b border-slate-100">
+            <div className="p-3 border-b border-gray-200 dark:border-slate-700">
               <div className="flex gap-2">
                 <select
                   value={selectedOtherId}
                   onChange={(e) => setSelectedOtherId(e.target.value)}
-                  className="flex-1 text-sm px-3 py-2 rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+                  className="flex-1 text-sm px-3 py-2 rounded-lg border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-gray-800 dark:text-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                 >
                   <option value="">Select {otherLabel}...</option>
                   {otherList.map((u) => (
@@ -279,26 +279,26 @@ const Chat = () => {
                       onClick={() => selectChat(chat)}
                       className={`flex items-center gap-3 p-3 rounded-xl cursor-pointer transition ${
                         isActive
-                          ? "bg-blue-100 border border-blue-200"
-                          : "hover:bg-slate-50 border border-transparent"
+                          ? "bg-blue-100 dark:bg-blue-900/50 border border-blue-200 dark:border-blue-700"
+                          : "hover:bg-gray-50 dark:hover:bg-slate-700 border border-transparent"
                       }`}
                     >
                       <div
                         className={`w-11 h-11 rounded-xl flex items-center justify-center text-lg shrink-0 ${
                           userRole === "DOCTOR"
-                            ? "bg-teal-100 text-teal-600"
-                            : "bg-blue-100 text-blue-600"
+                            ? "bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-400"
+                            : "bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400"
                         }`}
                       >
                         {userRole === "DOCTOR" ? "👤" : "🩺"}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="font-semibold text-slate-800 truncate">
+                        <p className="font-semibold text-gray-800 dark:text-white truncate">
                           {userRole === "DOCTOR"
                             ? other?.name || "Patient"
                             : `Dr. ${other?.name || "Doctor"}`}
                         </p>
-                        <p className="text-xs text-slate-500 truncate">
+                        <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
                           {lastMsg || "No messages yet"}
                         </p>
                       </div>
@@ -311,26 +311,26 @@ const Chat = () => {
         </aside>
 
         {/* Main chat area */}
-        <section className="flex-1 flex flex-col bg-white/60 backdrop-blur min-h-0">
+        <section className="flex-1 flex flex-col bg-white dark:bg-slate-800 min-h-0">
           {activeChat ? (
             <>
-              <div className="p-4 border-b border-slate-200 bg-white flex items-center gap-3">
+              <div className="p-4 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center gap-3">
                 <div
                   className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl ${
                     userRole === "DOCTOR"
-                      ? "bg-teal-100 text-teal-600"
-                      : "bg-blue-100 text-blue-600"
+                      ? "bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-400"
+                      : "bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400"
                   }`}
                 >
                   {userRole === "DOCTOR" ? "👤" : "🩺"}
                 </div>
                 <div>
-                  <h2 className="font-bold text-slate-800">
+                  <h2 className="font-bold text-gray-800 dark:text-white">
                     {userRole === "DOCTOR"
                       ? getOtherUser(activeChat)?.name || "Patient"
                       : `Dr. ${getOtherUser(activeChat)?.name || "Doctor"}`}
                   </h2>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
                     {userRole === "DOCTOR"
                       ? "Patient • Secure consultation"
                       : "Verified Doctor • Secure consultation"}
@@ -341,10 +341,10 @@ const Chat = () => {
               <div className="flex-1 overflow-y-auto p-4 space-y-4">
                 {messages.length === 0 && (
                   <div className="text-center py-12">
-                    <p className="text-slate-500 text-sm">
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">
                       No messages yet. Say hello to start the conversation.
                     </p>
-                    <p className="text-xs text-slate-400 mt-2">
+                    <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
                       All messages are logged for medical reference.
                     </p>
                   </div>
@@ -367,11 +367,11 @@ const Chat = () => {
                           className={`px-4 py-2.5 rounded-2xl ${
                             fromMe
                               ? "bg-blue-600 text-white rounded-br-md"
-                              : "bg-slate-100 text-slate-800 border border-slate-200 rounded-bl-md"
+                              : "bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white border border-gray-200 dark:border-slate-600 rounded-bl-md"
                           }`}
                         >
                           {!fromMe && (
-                            <p className="text-xs font-medium text-slate-500 mb-1">
+                            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">
                               {msg.sender?.name || "Participant"}
                             </p>
                           )}
@@ -380,7 +380,7 @@ const Chat = () => {
                           </p>
                           <p
                             className={`text-[10px] mt-1 ${
-                              fromMe ? "text-blue-200" : "text-slate-400"
+                              fromMe ? "text-blue-200" : "text-gray-400 dark:text-gray-500"
                             }`}
                           >
                             {new Date(msg.createdAt).toLocaleTimeString([], {
@@ -396,14 +396,14 @@ const Chat = () => {
                 <div ref={messagesEndRef} />
               </div>
 
-              <div className="p-4 border-t border-slate-200 bg-white">
+              <div className="p-4 border-t border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
                 <div className="flex gap-3">
                   <input
                     type="text"
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
                     placeholder="Type your message..."
-                    className="flex-1 px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none"
+                    className="flex-1 px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-gray-800 dark:text-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none"
                     onKeyDown={(e) => {
                       if (e.key === "Enter") {
                         e.preventDefault();
@@ -424,10 +424,10 @@ const Chat = () => {
             <div className="flex-1 flex items-center justify-center p-8">
               <div className="text-center max-w-sm">
                 <div className="text-7xl mb-4">💬</div>
-                <h3 className="text-xl font-semibold text-slate-700 mb-2">
+                <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
                   Select a conversation
                 </h3>
-                <p className="text-slate-500 text-sm">
+                <p className="text-gray-500 dark:text-gray-400 text-sm">
                   Choose a chat from the sidebar or start a new consultation with
                   your {otherLabel}.
                 </p>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 const PatientDashboard = () => {
@@ -38,6 +39,8 @@ const PatientDashboard = () => {
       setLoading(false);
     }
   };
+
+  const navigate = useNavigate();
 
   const nextAppointment = appointments
     .filter((a) => a.status === "APPROVED")

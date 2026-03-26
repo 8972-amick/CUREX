@@ -106,10 +106,10 @@ const Notification = () => {
 
   if (!userId) {
     return (
-      <div className="min-h-screen bg-gray-50 py-8">
+      <div className="min-h-screen bg-gray-50 dark:bg-slate-900 py-8">
         <div className="max-w-4xl mx-auto px-4">
-          <h1 className="text-3xl font-bold text-center mt-10 text-gray-800">Notifications</h1>
-          <p className="text-center mt-4 text-gray-600">
+          <h1 className="text-3xl font-bold text-center mt-10 text-gray-800 dark:text-white">Notifications</h1>
+          <p className="text-center mt-4 text-gray-600 dark:text-gray-300">
             Please log in to view your notifications.
           </p>
         </div>
@@ -118,10 +118,10 @@ const Notification = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-900 py-8">
       <div className="max-w-4xl mx-auto px-4">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-800">Notifications</h1>
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-white">Notifications</h1>
           {unreadCount > 0 && (
             <button
               onClick={markAllAsRead}
@@ -135,16 +135,16 @@ const Notification = () => {
         {loading ? (
           <div className="text-center py-8">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading notifications...</p>
+            <p className="mt-4 text-gray-600 dark:text-gray-300">Loading notifications...</p>
           </div>
         ) : error ? (
           <div className="text-center py-8">
-            <p className="text-red-600">{error}</p>
+            <p className="text-red-600 dark:text-red-400">{error}</p>
           </div>
         ) : notifications.length === 0 ? (
           <div className="text-center py-8">
             <div className="text-6xl mb-4">🔔</div>
-            <p className="text-gray-600">No notifications yet</p>
+            <p className="text-gray-600 dark:text-gray-300">No notifications yet</p>
           </div>
         ) : (
           <div className="space-y-4">

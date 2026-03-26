@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../services/api";
 
 
 const LicenseVerification = () => {
@@ -30,21 +30,14 @@ const LicenseVerification = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
-      <aside className="hidden md:block">
-        <Sidebar />
-      </aside>
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-900">
+      <main className="p-6">
+        <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-6">
+          License Verification
+        </h1>
 
-      <div className="flex-1 flex flex-col">
-        <Navbar />
-
-        <main className="p-6">
-          <h1 className="text-3xl font-bold mb-6">
-            License Verification
-          </h1>
-
-          <div className="bg-white rounded-xl shadow p-6">
-            <h2 className="text-lg font-semibold mb-4">
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow p-6">
+            <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
               Pending Doctor Licenses
             </h2>
 
@@ -92,8 +85,6 @@ const LicenseVerification = () => {
             )}
           </div>
         </main>
-      </div>
-
     </div>
   );
 };
