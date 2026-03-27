@@ -98,7 +98,7 @@ const AboutUs = () => {
               {
                 name: "Shusan Rai",
                 role: "UI/UX Designer",
-                 img: "",
+                 img: "/src/assets/Susan.jpeg",
               },
             ].map((member, idx) => (
               <div
