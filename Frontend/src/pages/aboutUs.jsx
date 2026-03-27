@@ -88,12 +88,12 @@ const AboutUs = () => {
               {
                 name: "Anamol Niroula",
                 role: "Frontend Manager",
-                img: "",
+                img: "/src/assets/Anmol.jpeg",
               },
               {
                 name: "Luv Kumar Gajmer",
                 role: "Database Manager",
-                 img: "",
+                 img: "/src/assets/Luv.jpeg",
               },
               {
                 name: "Shusan Rai",
