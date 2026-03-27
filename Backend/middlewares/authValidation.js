@@ -10,7 +10,7 @@ export const signUpValidation = (req, res, next) => {
     licenseNumber: joi.string().when("role", {
       is: "DOCTOR",
       then: joi.string().min(1).required(),
-      otherwise: joi.string().optional().allow(""),
+      otherwise: joi.string().optional().allow("",null),
     }),
   });
 
