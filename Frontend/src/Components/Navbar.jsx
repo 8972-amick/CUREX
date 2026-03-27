@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import { Bell, Settings, ChevronDown, User, LogOut } from "lucide-react";
+import { Bell, ChevronDown, User, LogOut } from "lucide-react";
 
 const ROLE_COLORS = {
   DOCTOR: "bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400",
@@ -111,10 +111,7 @@ export default function Navbar() {
             )}
           </button>
 
-          {/* Settings */}
-          <button className="w-9 h-9 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-800 hover:text-emerald-500 transition">
-            <Settings className="w-5 h-5" />
-          </button>
+         
 
           {/* Divider */}
           <div className="w-px h-6 bg-gray-200 dark:bg-slate-700 mx-1" />
@@ -164,10 +161,10 @@ export default function Navbar() {
                     Profile
                   </button>
 
-                  <button className="flex items-center gap-2.5 w-full px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl transition">
+                  {/* <button className="flex items-center gap-2.5 w-full px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl transition">
                     <Settings className="w-4 h-4" />
                     Settings
-                  </button>
+                  </button> */}
                 </div>
 
                 {/* Logout */}

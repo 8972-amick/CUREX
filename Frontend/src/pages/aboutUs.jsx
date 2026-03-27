@@ -1,118 +1,126 @@
 import React from "react";
 
-const Aboutus = () => {
+const AboutUs = () => {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-slate-900 py-12">
-      <div className="max-w-6xl mx-auto px-6">
-        <section id="about">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">About Us</h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-              <span className="font-semibold text-blue-600 dark:text-blue-400">Curex</span> is a
-              cutting-edge healthcare platform designed to connect patients with
-              top-tier doctors and streamline the appointment booking process.
-              Our mission is to make healthcare accessible, efficient, and
-              patient-centric. With a user-friendly interface and a vast network
-              of medical professionals, Curex empowers patients to take control
-              of their health and make informed decisions about their care.
-              Whether you're looking for a general practitioner, specialist, or
-              urgent care, Curex has you covered with a seamless booking
-              experience and trusted healthcare providers at your fingertips.
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-900 py-16">
+      <div className="max-w-7xl mx-auto px-6">
+
+        {/* ABOUT US SECTION */}
+        <section id="about" className="flex flex-col md:flex-row items-center gap-12">
+          {/* Left Text */}
+          <div className="md:w-1/2">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              About <span className="text-emerald-500 dark:text-emerald-500">Curex</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+              <span className="font-semibold text-emerald-500 dark:text-emerald-500">Curex</span> is a
+              cutting-edge healthcare platform that connects patients with top-tier doctors and streamlines appointments. Our mission is to make healthcare accessible, efficient, and patient-centric. Whether you're seeking a general practitioner, specialist, or urgent care, Curex has you covered.
             </p>
+            <button className="px-6 py-3 bg-emerald-500 text-white rounded-lg hover:bg-emerald-700 transition-all duration-300 font-medium">
+              Learn More
+            </button>
           </div>
 
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-8 text-center hover:shadow-2xl hover:scale-105 transition">
-              <i className="fas fa-bullseye text-4xl text-blue-600 dark:text-blue-400 mb-4"></i>
-              <h3 class="text-2xl font-semibold mb-2">Our Mission</h3>
-              <hr class="w-16 mx-auto border-b-4 border-red-600 mb-4" />
-              <p class="text-gray-600 leading-relaxed">
-                To make healthcare accessible and convenient for everyone while
-                supporting doctors in efficient patient management.
-              </p>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-2xl  hover:scale-105 transition">
-              <i class="fas fa-lightbulb text-4xl text-yellow-500 mb-4"></i>
-              <h3 class="text-2xl font-semibold mb-2">Our Vision</h3>
-              <hr class="w-16 mx-auto border-b-4 border-yellow-500 mb-4" />
-              <p class="text-gray-600 leading-relaxed">
-                Revolutionize healthcare by providing a seamless platform that
-                connects patients with trusted doctors, enhancing healthcare
-                outcomes globally.
-              </p>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-2xl hover:scale-105 transition">
-              <i class="fas fa-trophy text-4xl text-green-600 mb-4"></i>
-              <h3 class="text-2xl font-semibold mb-2">Our Goals</h3>
-              <hr class="w-16 mx-auto border-b-4 border-green-600 mb-4" />
-              <p class="text-gray-600 leading-relaxed">
-                Enhance healthcare services, simplify appointment booking, track
-                patient records effectively, and foster a community of
-                health-conscious individuals for better health outcomes.
-              </p>
-            </div>
-          </div>
-
-          {/* team member */}
-          <div className="ml-25 mr-25 ">
-            <div className=" ">
-              <h1 className="mt-10 font-bold text-4xl text-center text-gray-800 ">
-                {" "}
-                Meet Our <span className="text-teal-700">Team</span>
-              </h1>
-              <p className="text-center mb-10 italic">
-                The people powering our vision
-              </p>
-            </div>
-
-            <div className="grid grid-cols-4 pl-14 pb-4 gap-6">
-              {/* Team Member 1 */}
-              <div className="bg-white shadow-2xl border border-gray-200 rounded-xl w-60 p-4 hover:scale-105 transition-transform text-center">
-                <img
-                  src="/src/assets/WhatsApp Image 2026-02-11 at 13.23.06.jpeg"
-                  className="w-full h-40 object-cover rounded-t-xl mb-3"
-                />
-                <h1 className="font-bold text-lg">Amick Khadka</h1>
-                <p className="text-gray-600 text-sm">Frontend Manager</p>
-              </div>
-
-              {/* Team Member 2 */}
-              <div className="bg-white shadow-2xl border border-gray-200 rounded-xl w-60 p-4 hover:scale-105 transition-transform text-center">
-                <img
-                  src="/src/assets/WhatsApp Image 2026-02-11 at 13.27.26.jpeg"
-                  className="w-full h-40 object-cover rounded-t-xl mb-3"
-                />
-                <h1 className="font-bold text-lg">Anamol Niroula</h1>
-                <p className="text-gray-600 text-sm">Backend Manager</p>
-              </div>
-
-              {/* Team Member 3 */}
-              <div className="bg-white shadow-2xl border border-gray-200 rounded-xl w-60 p-4 hover:scale-105 transition-transform text-center">
-                <img
-                  src="/src/assets/WhatsApp Image 2026-02-11 at 13.26.02.jpeg"
-                  className="w-full h-40 object-cover rounded-t-xl mb-3"
-                />
-                <h1 className="font-bold text-lg">Luv Kumar Gajmer</h1>
-                <p className="text-gray-600 text-sm">Database Manager</p>
-              </div>
-
-              {/* Team Member 4 */}
-              <div className="bg-white shadow-2xl border border-gray-200 rounded-xl w-60 p-4 hover:scale-105 transition-transform text-center">
-                <img
-                  src="/src/assets/WhatsApp Image 2026-02-11 at 13.28.44.jpeg"
-                  className="w-full h-40 object-cover rounded-t-xl mb-3"
-                />
-                <h1 className="font-bold text-lg">shusan Rai</h1>
-                <p className="text-gray-600 text-sm">UI/UX Designer</p>
-              </div>
-            </div>
-          </div>
+          {/* Right Illustration */}
+         <div className="md:w-1/2 flex justify-center">
+  <img
+    src="/src/assets/AaboutUs.avif"
+    alt="Healthcare Illustration"
+    className="w-full max-w-full h-auto"
+  />
+</div>
         </section>
+
+        {/* MISSION, VISION, GOALS */}
+        <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              icon: "fas fa-bullseye",
+              iconColor: "text-blue-600 dark:text-blue-400",
+              title: "Our Mission",
+              borderColor: "border-blue-600",
+              description:
+                "To make healthcare accessible and convenient for everyone while supporting doctors in efficient patient management.",
+            },
+            {
+              icon: "fas fa-lightbulb",
+              iconColor: "text-yellow-500",
+              title: "Our Vision",
+              borderColor: "border-yellow-500",
+              description:
+                "Revolutionize healthcare by providing a seamless platform that connects patients with trusted doctors, enhancing healthcare outcomes globally.",
+            },
+            {
+              icon: "fas fa-trophy",
+              iconColor: "text-green-600",
+              title: "Our Goals",
+              borderColor: "border-green-600",
+              description:
+                "Enhance healthcare services, simplify appointment booking, track patient records effectively, and foster a community of health-conscious individuals.",
+            },
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-8 text-center hover:shadow-2xl hover:scale-105 transition-transform duration-300"
+            >
+              <i className={`${item.icon} text-4xl ${item.iconColor} mb-4`}></i>
+              <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
+              <hr className={`w-16 mx-auto border-b-4 ${item.borderColor} mb-4`} />
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{item.description}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* TEAM MEMBERS */}
+        <div className="mt-28 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Meet Our <span className="text-emerald-500">Team</span>
+          </h2>
+          <p className="text-gray-500 italic mb-12">The people powering our vision</p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 px-6">
+            {[
+              {
+                name: "Amick Khadka",
+                role: "Full Stack Developer",
+                img: "/src/assets/Amick.jpeg",
+              },
+              {
+                name: "Anamol Niroula",
+                role: "Frontend Manager",
+                img: "",
+              },
+              {
+                name: "Luv Kumar Gajmer",
+                role: "Database Manager",
+                 img: "",
+              },
+              {
+                name: "Shusan Rai",
+                role: "UI/UX Designer",
+                 img: "",
+              },
+            ].map((member, idx) => (
+              <div
+                key={idx}
+                className="bg-white dark:bg-slate-800 shadow-lg rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300"
+              >
+                <img
+                  src={member.img}
+                  alt={member.name}
+                  className="w-full h-44 object-cover"
+                />
+                <div className="p-5 text-center">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">{member.name}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">{member.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Aboutus;
+export default AboutUs;
