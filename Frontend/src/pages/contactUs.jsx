@@ -1,274 +1,83 @@
-import React, { useState } from "react";
+import React from "react";
 
-
-import { Mail, Phone, MapPin, Send } from "lucide-react";
-import Footer from "../Components/Footer";
-
-const ContactUs = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      // Simulate form submission
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setSubmitStatus("success");
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      setTimeout(() => setSubmitStatus(null), 5000);
-    } catch (err) {
-      console.error("Error submitting contact form:", err);
-      setSubmitStatus("error");
-      setTimeout(() => setSubmitStatus(null), 5000);
-    } finally {      setIsSubmitting(false);
-    }
-  };
-
+export default function ContactUs() {
   return (
-    <>
+    <div className="min-h-screen flex items-center justify-center relative">
 
-      <div className="min-h-screen bg-gray-50 dark:bg-slate-900 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          {/* Header Section */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Get In Touch
-            </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Have questions about CUREX? We'd love to hear from you. Send us a message
-              and we'll respond as soon as possible.
-            </p>
-          </div>
+      {/* BACKGROUND IMAGE */}
+      {/* <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1521791136064-7986c2920216')",
+        }}
+      ></div> */}
 
-          {/* Contact Info Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            {/* Email Card */}
-            <div className="bg-white rounded-lg shadow-md p-8 text-center hover:shadow-lg transition">
-              <div className="flex justify-center mb-4">
-                <Mail className="w-12 h-12 text-teal-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Email</h3>
-              <p className="text-gray-600 mb-2">Send us an email anytime</p>
-              <a
-                href="mailto:info@curex.org"
-                className="text-teal-600 font-semibold hover:text-teal-700"
-              >
-                info@curex.org
-              </a>
+      {/* DARK OVERLAY */}
+      <div className="absolute inset-0 bg-gray-200 opacity-60"></div>
+
+      {/* MAIN CONTAINER */}
+      <div className="relative w-full max-w-6xl h-[600px] flex flex-col md:flex-row shadow-xl rounded-2xl overflow-hidden">
+        
+        {/* LEFT SIDE (FORM) */}
+        <div className="w-full md:w-1/2 bg-slate-800/90 backdrop-blur-md text-white px-8 py-8 flex flex-col justify-center">
+          
+          <h1 className="text-3xl md:text-4xl font-bold mb-2 tracking-wide">
+            CONTACT US
+          </h1>
+
+          <p className="text-sm text-gray-200 mb-6 italic">
+            Fill out the form, and we’ll be in touch soon!
+          </p>
+
+          <form className="space-y-4">
+            <div className="flex gap-3">
+              <input
+                type="text"
+                placeholder="First Name *"
+                className="w-1/2 px-3 py-2 rounded-full bg-transparent border border-white placeholder-gray-300 focus:outline-none"
+              />
+              <input
+                type="text"
+                placeholder="Last Name *"
+                className="w-1/2 px-3 py-2 rounded-full bg-transparent border border-white placeholder-gray-300 focus:outline-none"
+              />
             </div>
 
-            {/* Phone Card */}
-            <div className="bg-white rounded-lg shadow-md p-8 text-center hover:shadow-lg transition">
-              <div className="flex justify-center mb-4">
-                <Phone className="w-12 h-12 text-teal-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Phone</h3>
-              <p className="text-gray-600 mb-2">Call us during business hours</p>
-              <a
-                href="tel:+1234567890"
-                className="text-teal-600 font-semibold hover:text-teal-700"
-              >
-                +1 (234) 567-890
-              </a>
+            <input
+              type="email"
+              placeholder="Email *"
+              className="w-full px-3 py-2 rounded-full bg-transparent border border-white placeholder-gray-300 focus:outline-none"
+            />
+
+            <textarea
+              rows="3"
+              placeholder="Ask us anything..."
+              className="w-full px-3 py-2 rounded-xl bg-transparent border border-white placeholder-gray-300 focus:outline-none"
+            ></textarea>
+
+            <div className="flex items-center gap-2 text-sm">
+              <input type="checkbox" className="accent-white" />
+              <span>Subscribe to newsletter</span>
             </div>
 
-            {/* Address Card */}
-            <div className="bg-white rounded-lg shadow-md p-8 text-center hover:shadow-lg transition">
-              <div className="flex justify-center mb-4">
-                <MapPin className="w-12 h-12 text-teal-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Address</h3>
-              <p className="text-gray-600 mb-2">Visit us at our office</p>
-              <p className="text-teal-600 font-semibold">
-                123 Medical Center, Healthcare City, HC 12345
-              </p>
-            </div>
-          </div>
-
-          {/* Contact Form Section */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-              {/* Form */}
-              <div className="p-8 md:p-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Send us a Message
-                </h2>
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Name Field */}
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition"
-                      placeholder="Enter your full name"
-                    />
-                  </div>
-
-                  {/* Email Field */}
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-
-                  {/* Subject Field */}
-                  <div>
-                    <label
-                      htmlFor="subject"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition"
-                      placeholder="How can we help?"
-                    />
-                  </div>
-
-                  {/* Message Field */}
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows="5"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition resize-none"
-                      placeholder="Your message here..."
-                    ></textarea>
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-[#4b4446] hover:bg-teal-700 disabled:bg-gray-400 text-white font-semibold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2"
-                  >
-                    <Send className="w-5 h-5" />
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </button>
-
-                  {/* Status Messages */}
-                  {submitStatus === "success" && (
-                    <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-                      Thank you! Your message has been sent successfully.
-                    </div>
-                  )}
-                  {submitStatus === "error" && (
-                    <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-                      There was an error sending your message. Please try again.
-                    </div>
-                  )}
-                </form>
-              </div>
-
-              {/* Info Section */}
-              <div className="bg-[#4b4446] p-8 md:p-12 text-white">
-                <h2 className="text-3xl font-bold mb-6">Why Contact Us?</h2>
-
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">
-                      Quick Response Time
-                    </h3>
-                    <p className="text-teal-100">
-                      We aim to respond to all inquiries within 24 hours during
-                      business days.
-                    </p>
-                  </div>
-
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">
-                      Expert Support
-                    </h3>
-                    <p className="text-teal-100">
-                      Our team of healthcare professionals is ready to assist you
-                      with any questions.
-                    </p>
-                  </div>
-
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">
-                      Available Resources
-                    </h3>
-                    <p className="text-teal-100">
-                      Access our FAQ, documentation, and resource center for
-                      immediate assistance.
-                    </p>
-                  </div>
-
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">
-                      Business Hours
-                    </h3>
-                    <p className="text-teal-100">
-                      Monday - Friday: 9:00 AM - 6:00 PM<br/>
-                      Saturday - Sunday: 10:00 AM - 4:00 PM
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            <button className="w-full border border-white py-2 rounded-full hover:bg-white hover:text-green-800 transition">
+              SUBMIT
+            </button>
+          </form>
         </div>
-        <Footer/>
-      </div>
-    </>
-  );
-};
 
-export default ContactUs;
+        {/* RIGHT SIDE (MAP) */}
+        <div className="w-full md:w-1/2 relative">
+          <iframe
+            title="map"
+            src="https://www.google.com/maps?q=Janakpur,Nepal&output=embed"
+            className="w-full h-full border-0"
+          ></iframe>
+
+          <div className="absolute inset-0 bg-white opacity-40 pointer-events-none"></div>
+        </div>
+      </div>
+    </div>
+  );
+}

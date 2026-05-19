@@ -76,6 +76,8 @@ export default function App() {
         >
           <Route index element={<AdminDashboard />} />
           <Route path="notifications" element={<Notification />} />
+          <Route path="chat" element={<Chat />} />
+          <Route path="license-verification" element={<LicenseVerification />} />
         </Route>
 
         <Route

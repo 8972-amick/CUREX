@@ -8,7 +8,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  // ✅ Redirect if already logged in
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
@@ -37,7 +37,6 @@ export default function Login() {
       if (res.status === 200 && res.data.token) {
         const user = res.data.user;
 
-        // ✅ Store data properly
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("userId", user.id); // ✅ Store userId separately
@@ -45,7 +44,7 @@ export default function Login() {
 
         toast.success("Login successful 🎉");
 
-        // ✅ Correct navigation (NO /dashboard)
+        
         if (user.role === "DOCTOR") {
           navigate("/doctor");
         } else if (user.role === "ADMIN") {
@@ -64,7 +63,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-[#0f172a] relative overflow-hidden">
-      {/* Background */}
+      
       <div className="absolute inset-0 bg-[linear-gradient(rgba(6,78,59,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(6,78,59,0.08)_1px,transparent_1px)] bg-[size:48px_48px] opacity-60" />
 
       <div className="w-full max-w-[420px] relative z-10">
